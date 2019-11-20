@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>已刊登活動</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="static/assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<nav class="left">
+					<a href="#menu"><span>Menu</span></a>	
+				</nav>
+				<a href="upLoadEvent" class="logo">已刊登活動</a>
+				<div id="nlogin">
+				<!--<nav class="right" ><a href="login" class="button alt">登入</a></nav>-->
+				</div>
+				<div id="alogin", style="display: none"></div>
+			</header>
+
+		<!-- Menu -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index">主頁</a></li>
+					<li><a href="search">搜尋活動</a></li>
+					<li><a href="upLoadEvent">建立活動</a></li>
+					<li><a href="localCompany">在地商家</a></li>
+					<li><a href="https://00757303.wixsite.com/website">漁村小尖兵</a></li>
+				</ul>
+			</nav>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<form method=["POST"] action="/complete" enctype="multipart/form-data">			
+					<!-- Content -->
+					<h2 id="content">活動名稱:&nbsp;&nbsp;<span style="color:#008F7E;" id="theName">{{activity.eventName}}</span></h2>
+						<h2 id="content">封面宣傳照</h2>
+						<span id="eventPhoto"></span>
+		
+						<h2 id="content">活動日期:&nbsp;&nbsp;<span style="color:#008F7E;">{{activity.eventM_B}}~{{activity.eventM_F}}</span></h2>
+						
+						<h2 id="content">活動地點:&nbsp;&nbsp;<span style="color:#008F7E;" id="theLocation">{{activity.eventLocation}}</h2>
+						<span id="googleMap" ></span>
+
+						<h2 id="content">活動詳情、說明</h2>
+						<h2 style="color:#008F7E">{{activity.eventDetail}}</h2>
+
+						<h2 id="content">活動規劃進度</h2> -->
+						<div>
+								<a href="javascript:;" onclick="document.getElementById('nec_hid').style.display='none'">
+									<input type="radio" id="Y" name="eventReady" value="Y" checked >
+									<label for="Y" style="font-size: 23px;">已籌畫完成</label></a>
+								<a href="javascript:;" onclick="document.getElementById('nec_hid').style.display=''">
+									<input type="radio" id="N" name="eventReady" value="N" >
+									<label for="N" style="font-size: 23px;">我仍在籌畫</label></a>
+						</div> 
+						<div id="nec_hid" style="display: none"> <label >籌備所需<h2 style="color:#008F7E;">{{activity.necessary}}</h2></label></div>
+					<hr class="major" />
+
+						<!-- Form -->
+							<h1>活動聯絡人資訊</h1>
+								<div class="row uniform">
+									<div class="6u 12u$(xsmall)"><h2 style="color:#008F7E;">{{activity.name_}}</h2></div>
+									<div class="6u$ 12u$(xsmall)"><h2 style="color:#008F7E;">{{activity.email_}}</h2></div>
+									<div class="6u 12u$(xsmall)"><h2 style="color:#008F7E;">{{activity.phonenum_}}</h2></div>
+									<div class="12u$"><h2 style="color:#008F7E;">{{activity.address_}}</h2></div>
+									<div class="12u$"><h2 style="color:#008F7E;">{{activity.remark}}</h2></div>
+								</div>
+						</form>
+					<hr/>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h2>Seafood Allergy</h2>
+					<ul class="actions">
+						<li><span class="icon fa-phone"></span> <a href="#">0965728008</a></li>
+						<li><span class="icon fa-envelope"></span> <a href="#">kaz749283@gmail.com</a></li>
+						<li><span class="icon fa-map-marker"></span> 123 Somewhere Road, Nashville, TN 00000</li>
+					</ul>
+					<p>Author:WEI WANG Hopeful LEE Wei KUANG CAPTAIN LIANG SHAN LEE </p>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+		<script src="static/assets/js/jquery.min.js"></script>
+		<script>
+		$(document).ready(function(){
+			$('#eventPhoto').empty();
+			var popContent =			
+				"<img style='width:1080px;height:540px;' src='static/images/"+
+				$('#theName').text()+
+				".jpg'><br>";
+				$('#eventPhoto').append(popContent);
+			});
+			
+		$(document).ready(function(){
+			$('#googleMap').empty();
+			var popContent_2 =			
+				"<iframe id='googleMap' width='100%' height='200' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q="+
+				$('#theLocation').text()+
+				"&z=16&output=embed&t='></iframe><br><br>";
+				$('#googleMap').append(popContent_2);
+			});
+		
+		</script>
+		<script src="static/assets/js/jquery.scrolly.min.js"></script>
+		<script src="static/assets/js/skel.min.js"></script>
+		<script src="static/assets/js/util.js"></script>
+		<script src="static/assets/js/main.js"></script>
+	</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>建立活動</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="static/assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<nav class="left">
+					<a href="#menu"><span>Menu</span></a>	
+				</nav>
+				<a href="upLoadEvent" class="logo">建立活動</a>
+				<div id="nlogin">
+					<!--<nav class="right" ><a href="login" class="button alt">登入</a></nav>-->
+				</div>
+				<div id="alogin", style="display: none">
+
+				</div>
+				</nav>
+				
+			</header>
+
+		<!-- Menu -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index">主頁</a></li>
+					<li><a href="search">搜尋活動</a></li>
+					<li><a href="upLoadEvent">建立活動</a></li>
+					<li><a href="localCompany">在地商家</a></li>
+					<li><a href="https://00757303.wixsite.com/website">漁村小尖兵</a></li>
+				</ul>
+			</nav>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h1>刊登活動</h1>
+						<p>在這，你可以刊登您所要舉行的活動</p>
+					</header>
+
+					<!-- Content -->
+					<h2 id="content">活動名稱</h2>
+						<form action="/complete"  method="post" enctype="multipart/form-data">					
+						<p>
+							<label> 活動名稱:
+								<input type="text" name="eventName" id="eventName" placeholder="請輸入活動名稱" autofocus required="required">
+							</label>
+						</p>
+						<h2 id="content">封面宣傳照</h2>
+						<input type="file" id="event_photo" name="event_photo" accept="image/jpg, image/jpeg, image/png"><br>
+						<img id="event_img" style="width:438px;height:219px;" src="static/images/ex_pic.jpg"  />
+						<h2 id="content">活動日期</h2>
+						<p><label> 開始時間:<input name="eventM_B" id="eventM_B" type="datetime-local"  style="text-align:;"min="2019/01/01" required="required" value=""></label></p>
+						<p><label> 結束時間:<input name="eventM_F" id="eventM_F" type="datetime-local" style="text-align:justify;"min="2019/01/01"; required="required"></label></p>
+						
+						<h2 id="content">活動地點</h2>
+						
+						<p>
+							<label> 活動地點:
+								<input style="display:hidden;" type="text" name="eventLocation" placeholder="請輸入活動詳細地址、位置" required="required">
+							</label>
+						</p>
+
+						<h2 id="content">活動分類</h2>
+						<p >
+							<label> 請勾選活動分類(可複選,至少一項)
+							<div style="display: inline-block;">	
+								<input type="checkbox" name="learn" id="learn" >
+								<label for="learn">學習</label>
+							</div>
+							<div style="display: inline-block;">
+								<input type="checkbox" name="art" id="art" >
+								<label for="art">藝文</label>
+							</div>
+							<div style="display: inline-block;">
+								<input type="checkbox" name="sport" id="sport" >
+								<label for="sport">運動</label>
+							</div>
+							<div style="display: inline-block;">
+								<input type="checkbox" name="ocean" id="ocean" >
+								<label for="ocean">海洋</label>
+							</div>
+							<div style="display: inline-block;">
+								<input type="checkbox" name="fishery" id="fishery" >
+								<label for="fishery">漁業</label>
+							</div>
+							<div style="display: inline-block;">
+								<input type="checkbox" name="welfare" id="welfare" >
+								<label for="welfare">公益</label>
+							</div>
+							<div style="display: inline-block;">
+								<input type="checkbox" name="techlogy" id="techlogy" >
+								<label for="techlogy">科技</label>
+							</div>
+							<div style="display: inline-block;">
+								<input type="checkbox" name="health" id="health" >
+								<label for="health">健康</label>
+							</div>
+							<div style="display: inline-block;">
+								<input type="checkbox" name="entertainment" id="entertainment" >
+								<label for="entertainment">娛樂</label>
+							</div>
+							<br>
+							<div id="otherclass">
+								其他&nbsp;&nbsp;<input style="width:20%;height:2.8em;" type="text" name="otherclass" id="otherclass">
+							</div>		
+						</p>
+
+						<h2 id="content">活動詳情、說明</h2>
+						
+						<label> 活動詳情、說明:
+							<textarea name="eventDetail" id="eventDetail" placeholder="請輸入活動相關詳細資訊、說明" rows="10" required="required"></textarea>
+						</label>
+
+						<h2 id="content">活動規劃進度</h2>
+							<div>
+								<a href="javascript:;" onclick="document.getElementById('nec_hid').style.display='none'">
+									<input type="radio" id="Y" name="eventReady" value="Y" checked >
+									<label for="Y" style="font-size: 23px;">已籌畫完成</label></a>
+								<a href="javascript:;" onclick="document.getElementById('nec_hid').style.display=''">
+									<input type="radio" id="N" name="eventReady" value="N" >
+									<label for="N" style="font-size: 23px;">我仍在籌畫</label></a>
+							</div>
+
+							<div id="nec_hid" style="display: none"> <label >籌備所需
+								<textarea type="text" name="necessary" id="necessary" placeholder="請寫下籌備所需物品、備註" rows="6"  ></textarea>
+							</label></div>
+					<hr class="major" />
+
+						<!-- Form -->
+							<h1>活動聯絡人資訊</h1>
+								<div class="row uniform">
+									<div class="6u 12u$(xsmall)">
+										<input type="text" name="name_" id="name_" value="" placeholder="姓名" required="required"/>
+									</div>
+									<div class="6u$ 12u$(xsmall)">
+										<input type="email" name="email_" id="email_" value="" placeholder="電子郵件 Email" required="required"/>
+									</div>
+									<div class="6u 12u$(xsmall)">
+										<input type="text" name="phonenum_" id="phonenum_" placeholder="聯絡電話" required="required"/>
+									</div>
+									<div class="12u$">
+										<input type="text" name="address_" id="address_" placeholder="地址" required="required"/>
+									</div>
+									<div class="12u$">
+										<textarea name="remark" id="remark" placeholder="備註" rows="4" required="required"></textarea>
+									</div>
+		
+									<div class="12u$">
+										<ul class="actions">
+											<li><input type="submit" value="確認送出" /></li>
+											<li><input type="reset" value="取消" class="alt" /></li>
+										</ul>
+									</div>
+								</div>
+						</form>
+					<hr/>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h2>Seafood Allergy</h2>
+					<ul class="actions">
+						<li><span class="icon fa-phone"></span> <a href="#">0965728008</a></li>
+						<li><span class="icon fa-envelope"></span> <a href="#">kaz749283@gmail.com</a></li>
+						<li><span class="icon fa-map-marker"></span> 123 Somewhere Road, Nashville, TN 00000</li>
+					</ul>
+					<p>Author:WEI WANG Hopeful LEE Wei KUANG CAPTAIN LIANG SHAN LEE </p>
+				</div>
+			</footer>
+
+
+		<!-- Scripts -->
+		<script src="static/assets/js/jquery.min.js"></script>
+		<script>
+			$("#event_photo").change(function(){
+			readURL(this);
+			});
+			function readURL(input){ 
+				if(input.files && input.files[0]){ 
+				var reader = new FileReader(); 
+				reader.onload = function (e) {
+				$("#event_img").attr('src', e.target.result); }
+				reader.readAsDataURL(input.files[0]);}
+			}
+			var RightNow = new Date();
+			var M = addZero(RightNow.getMonth() + 1);
+			var d = addZero(RightNow.getDate());
+			var h = addZero(RightNow.getHours());
+			var m = addZero(RightNow.getMinutes());
+		    function addZero(i) {
+		     if (i < 10) i = "0" + i;
+		      return i;
+		    }
+		    $(document).ready(function(){
+				$("#eventM_B").val(RightNow.getFullYear() + "-"+ M + "-" + d + "T" + h + ":" + m);});
+		    $(document).ready(function(){
+				$("#eventM_F").val(RightNow.getFullYear() + "-"+ M + "-" + d + "T" + h + ":" + m);});
+		</script>
+		
+		<script src="static/assets/js/jquery.scrolly.min.js"></script>
+		<script src="static/assets/js/skel.min.js"></script>
+		<script src="static/assets/js/util.js"></script>
+		<script src="static/assets/js/main.js"></script>
+		<script>
+		
+	</body>
+	
+</html>

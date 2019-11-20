@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>管理者</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="static/assets/css/main.css" />
+		<style>
+			body{background-color: #E0E0E0;}
+
+		.box {
+  			float: left;
+ 			width: 50%;
+  			padding: 50px;
+  			height: 300px;
+		}	
+		.clearfix::after {
+  			content: "";
+  			clear: both;
+  			display: table;
+		}
+
+		</style>
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header" style="background-color: #CCCCCC">
+				<nav class="left">
+					<a href="#menu"><span>Menu</span></a>
+				</nav>
+				<a class="logo" style="background-color: #CCCCCC;">管理者</a>
+			</header>
+
+		<!-- Menu -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">主頁</a></li>
+					<li><a href="generic.html">搜尋活動</a></li>
+					<li><a href="elements.html">建立活動</a></li>
+					<li><a href="local.html">在地商家</a></li>
+					<li><a href="https://00757303.wixsite.com/website">漁村小尖兵</a></li>
+				</ul>
+			</nav>
+
+		<!-- Main -->
+			<section id="main" class="wrapper" >
+				<div class="inner" >
+				<div class="box" style="width:40%;">
+					<img src="static/images/admin.png" alt="" style="width: 250px;height: 250px;margin:auto;" ></div>
+				<div class="box">	
+					<label > 名稱ID:
+						<input type="text" name="adminname" id="adminname" disabled="" value="我是管理者" style="float: left;">
+					</label><br><br>
+					<label >帳號Account:
+						<input type="text" name="adminaccount" id="adminaccount" disabled="" value="Account" style="float: left;">
+					</label><br><br>
+					<label >身分組:
+						<input type="text" name="adminidentity" id="adminidentity" disabled="" value="Administration" style="float: left;">
+					</label>
+
+				</div>	
+				<div class="box" style="width:100%;height: 1000px">
+					<h1>網站控管</h1>
+					<h3>活動控管</h3>
+					<label >
+							<div>	
+								<input type="checkbox" name="at1" id="at1" >
+								<label for="at1" style="font-size: 25px;">
+									活動1-魚市無眠<br>
+									活動時間-2019-09-20(五) 23:00 ~ 2019-12-31(二) 02:00<br> 
+								<a href="https://www.google.com" style="text-decoration: none">活動詳細資訊</a></label>
+							</div>
+							<div>
+								<input type="checkbox" name="at2" id="at2" >
+								<label for="at2" style="font-size: 25px;">
+									活動2-海洋漁村創新黑客松<br>
+									活動時間-2019-10-19(六) 08:30 ~ 2019-10-20(日) 19:00<br>
+								<a href="https://www.google.com" style="text-decoration: none">活動詳細資訊</a></label>
+							</div>
+							<div>
+								<input type="checkbox" name="at3" id="at3" >
+								<label for="at3" style="font-size: 25px;">
+									活動3-2019 海科館─追鯊任務親子體驗營(11月場)<br>
+									活動時間-2019-11-16(六) 09:30 ~ 18:00<br>
+									<a href="https://www.google.com" style="text-decoration: none">活動詳細資訊</a></label>
+								</label>
+							</div>
+							<div style="display: inline-block;">
+								<input type="checkbox" name="at4" id="at4" >
+								<label for="at4" style="font-size: 25px;">
+									活動4-基隆山海小旅行x雨滴鑰匙包手作體驗<br>
+									活動時間-2019-11-30(六) 10:00 ~ 2019-12-21(六) 18:30<br>
+									<a href="https://www.google.com" style="text-decoration: none">活動詳細資訊</a></label>
+								</label>
+							</div>
+							<div class="12u$">
+								<ul class="actions">
+									<li><input type="submit" value="完成" ></li>	
+									<li><input type="submit" value="刪除" ></li></ul></div>
+					</label>
+				</div>	
+				</div>
+
+		
+
+		<!-- Scripts -->
+			<script src="static/assets/js/jquery.min.js"></script>
+			<script src="static/assets/js/jquery.scrolly.min.js"></script>
+			<script src="static/assets/js/skel.min.js"></script>
+			<script src="static/assets/js/util.js"></script>
+			<script src="static/assets/js/main.js"></script>
+
+	</body>
+</html>

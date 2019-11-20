@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>登入</title>
+<style>
+    @import "bourbon";
+    body.login {
+        background: rgba(195,255,255,0.3);
+        background-color:rgba(195,255,255,0.3);
+        vertical-align: center;
+    }
+
+    .wrapper {
+        color: rgba(195,255,255,0.3);
+    }
+
+    .form-signin {
+        max-width: 380px;
+        padding: 15px 35px 45px;
+        margin: 0 auto;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 12px;
+    }
+    .form-signin-heading,
+    .checkbox {
+
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .form-control {
+        position: relative;
+        font-size: 16px;
+        padding: 10px;
+        text-align: center;
+        width: 250px;
+        height: 10px;
+
+    }
+
+    input[type="text"] {
+        margin-bottom: -1px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    input[type="password"] {
+        margin-bottom: 20px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    button.b {
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        width: 50%;
+        height: 55px;
+    }
+</style>
+	<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="static/assets/css/main.css" />
+</head>
+
+<body class="login">
+	
+    <div class="inner" style="background-color:rgba(195,255,255,0.1); ">
+        <form class="form-signin" action="/login" method="POST" name="login_user_form">
+        <input id="next" name="next" type="hidden" value="/">
+        <input id="csrf_token" name="csrf_token" type="hidden" value="IjY5NDU0MDk5MDk4ZDM1YmY3NDNjZGRlNzBlOGVkNDgxZTY4NTNkODQi.XanKnA.njAOl4lsvUasFEAByhQ-bT_wma0">
+
+        <h1 class="form-signin-heading">登入</h1>
+        <label for="email">請輸入Email:
+        <input id="email" type="text" class="form-control" name="email" placeholder="Email Address" required value=""
+                autofocus="" /></label>
+
+        <label for="password">請輸入密碼: 
+        <input id="password" type="password" class="form-control" name="password" placeholder="Password" required value=""></label>
+
+        <input type="checkbox" name="rememberMe" id="rememberMe" value="y">
+			  <label for="rememberMe"><b>記住我</b></label>
+            <br>
+            <input id="submit" name="submit" type="submit" value="登入" style="width:50%;height: 55px; font-size: 16px; margin: 4px 2px;"><br>
+            <label> 還沒有帳號嗎?<br>
+            <input type="button" style="width:50%;height: 55px; font-size: 16px; margin: 4px 2px;" value="註冊" onclick="location.href='register.html'" /></label><br>
+
+            <b><a href="index" style="width:20%;font-size:15px;color:#727a82;background-color:rgba(0,0,0,0);text-decoration:none;" >返回主頁</a></b>
+</html>
