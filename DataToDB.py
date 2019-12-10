@@ -92,8 +92,7 @@ def login_Use():
     login_user(nowUser)
     return redirect('index')
            
-
-''' #分檔完成的部分 
+           
 @app.route('/index', methods=['GET'])
 def home():
     temp_events=list()
@@ -236,7 +235,7 @@ def searchEvent():
                 searchEvents.append(events)
             return jsonify(searchEvents)
 
-'''
+
 # @app.route('/eventdetails',methods=['GET','POST'])
 # def showEvents():
 #     data= request.values.to_dict()
