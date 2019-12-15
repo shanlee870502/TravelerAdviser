@@ -270,7 +270,10 @@ def admin_edit():
     return render_template("editEvent.html")
     
 
+@app.route('/map')
+def map():
+    return render_template("map.html")
 
-app.run()
+app.run(host="140.121.199.231", port=27018)
 #127.0.0.1
 #140.121.199.231
