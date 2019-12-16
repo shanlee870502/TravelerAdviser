@@ -1,6 +1,6 @@
 import os
 import flask
-from flask import render_template, request, jsonify, redirect, url_for
+from flask import render_template, request, jsonify, redirect, url_for, make_response
 from flask_security import Security, MongoEngineUserDatastore ,login_user, logout_user, UserMixin, RoleMixin, login_required, current_user, roles_accepted
 from pymongo import MongoClient
 from flask_mongoengine import MongoEngine
@@ -16,7 +16,7 @@ app.config.from_object('app.config')
 client = MongoClient('mongodb+srv://Liao:871029@cluster0-sk2jk.mongodb.net')
 db = client['EventResourse']
 col = db['Event']
-
+location_col = db['newEvent']
 db = MongoEngine(app)
 
 
@@ -269,6 +269,12 @@ def admin_edit():
     col.delete_one({"eventName":data["eventName"]})
     return render_template("editEvent.html")
     
+@app.route('/api/map/location', methods = ['GET','POST'])
+def find_near_location():
+    data = request.get_json()
+    return jsonify({"location": [['25.150339','121.777132'],
+                    ['25.250339','121.777132'],['25.350339',
+                    '121.777132']]})
 
 @app.route('/map')
 def map():
