@@ -1,14 +1,12 @@
 /*global $*/
 var markers = [];
-var ipconfig = "140.121.199.231:27018"
 var position=[];
+var ipconfig = "140.121.199.231:27018"
 
 function findLocation()
 {
   clearMarkers();
   const address = document.getElementById("address").value;
-  var center_lat;
-  var center_lng;
   var icon = {
     url: "https://cdn.pixabay.com/photo/2016/07/21/00/38/pokemon-1531648_960_720.png", // url
     scaledSize: new google.maps.Size(40,60), // scaled size
@@ -27,15 +25,16 @@ function findLocation()
         icon:icon,
         animation: google.maps.Animation.DROP
       }));
-      center_lat = results[0].geometry.location.lat();
-      center_lng = results[0].geometry.location.lng();
+      const center_lat = results[0].geometry.location.lat();
+      const center_lng = results[0].geometry.location.lng();
 
       const find = document.getElementById("findbutton");
       find.style.display='inline';
+      find.addEventListener("click", add(center_lat, center_lng), false);
+
     } else {
       console.log(status);
     }
-    find.addEventListener("click", add(center_lat, center_lng), false);
   });
 }
 
@@ -60,25 +59,37 @@ function add(center_lat, center_lng)
   })
   .then(res => res.json())
   .then((data) => {
-    position=[];
+    console.log(position);
     for(let i =0;i<3;i++)
     {
       console.log(parseFloat(data.location[i][0]),parseFloat(data.location[i][1]))
+      //var location = new google.map.LatLng(parseFloat(data.location[i][0]),parseFloat(data.location[i][1]));
       var location = {lat:parseFloat(data.location[i][0]),lng:parseFloat(data.location[i][1])};
       position.push(location);
+      
     }
-    console.log(position.length);
+    console.log(position);
+  })
+  .catch(err => { throw err });
+// var position = [
+//   {label:'是在',lat:25.0336962,lng:121.5643673,},
+//   {label:'哈摟',lat:25.0333698,lng:121.5641564},
+//   {label:'你有事',lat:25.033899,lng:121.564329},
+//   {label:'哈哈',lat:25.0338407,lng:121.5645269},
+//   {label:'XD',lat:25.0336377,lng:121.5645727}
+// ];
+  setTimeout(function(){ 
+    console.log("position.length: "+position.length);   
     for (var i = 0; i < position.length; i++) 
     {
       addMarker(i);
     } 
-  })
-  .catch(err => { throw err });  
+  }, 3000);
+
+  
 }
 
 function addMarker(e) {
-  console.log(position[e].lat,position[e].lng);
-  const number = Math.floor((Math.random() * 5) + 1);
   setTimeout(function() {
     markers.push(new google.maps.Marker({
         position: {
@@ -87,12 +98,6 @@ function addMarker(e) {
         },
         map: map,
         //label: position[e].label,
-        icon:{
-          url:'/static/gps_images/'+number+'.png', // url
-          scaledSize: new google.maps.Size(80,80), // scaled size
-          origin: new google.maps.Point(0,0), // origin
-          anchor: new google.maps.Point(0, 0) // anchor
-        },
         animation: google.maps.Animation.DROP
       }));
   }, e * 150);

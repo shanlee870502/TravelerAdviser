@@ -272,10 +272,9 @@ def admin_edit():
 @app.route('/api/map/location', methods = ['GET','POST'])
 def find_near_location():
     data = request.get_json()
-    print(data)
     return jsonify({"location": [['25.150339','121.777132'],
-                    ['25.150350','121.787132'],['25.150360',
-                    '121.797132']]})
+                    ['25.250339','121.777132'],['25.350339',
+                    '121.777132']]})
 
 @app.route('/map')
 def map():
