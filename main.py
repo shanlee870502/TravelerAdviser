@@ -6,6 +6,7 @@ from pymongo import MongoClient
 from flask_mongoengine import MongoEngine
 from werkzeug.utils import secure_filename
 import jieba
+from models import Map
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
@@ -272,9 +273,8 @@ def admin_edit():
 @app.route('/api/map/location', methods = ['GET','POST'])
 def find_near_location():
     data = request.get_json()
-    return jsonify({"location": [['25.150339','121.777132'],
-                    ['25.250339','121.777132'],['25.350339',
-                    '121.777132']]})
+    result = Map.FindNearLocation(data['lat'], data['lng'])
+    return jsonify(result)
 
 @app.route('/map')
 def map():
@@ -283,3 +283,4 @@ def map():
 app.run(host="140.121.199.231", port=27018)
 #127.0.0.1
 #140.121.199.231
+

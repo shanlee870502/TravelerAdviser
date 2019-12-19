@@ -30,7 +30,9 @@ function findLocation()
 
       const find = document.getElementById("findbutton");
       find.style.display='inline';
-      find.addEventListener("click", add(center_lat, center_lng), false);
+      find.addEventListener("click",function(){
+        add(center_lat, center_lng);
+      }, false);
 
     } else {
       console.log(status);
@@ -59,25 +61,23 @@ function add(center_lat, center_lng)
   })
   .then(res => res.json())
   .then((data) => {
-    console.log(position);
-    for(let i =0;i<3;i++)
+    //console.log(position);
+    for(let i =0;i<5;i++)
     {
-      console.log(parseFloat(data.location[i][0]),parseFloat(data.location[i][1]))
-      //var location = new google.map.LatLng(parseFloat(data.location[i][0]),parseFloat(data.location[i][1]));
-      var location = {lat:parseFloat(data.location[i][0]),lng:parseFloat(data.location[i][1])};
+      console.log(data[i][0]['eventLocation']);
+      console.log(data[i][0]['eventName']);
+      console.log(data[i][0]['eventM_B']);
+      console.log(data[i][0]['eventM_F']);
+      console.log(data[i][0]['location']);
+      
+      var location = data[i][0]['location'];
       position.push(location);
       
     }
     console.log(position);
   })
   .catch(err => { throw err });
-// var position = [
-//   {label:'是在',lat:25.0336962,lng:121.5643673,},
-//   {label:'哈摟',lat:25.0333698,lng:121.5641564},
-//   {label:'你有事',lat:25.033899,lng:121.564329},
-//   {label:'哈哈',lat:25.0338407,lng:121.5645269},
-//   {label:'XD',lat:25.0336377,lng:121.5645727}
-// ];
+
   setTimeout(function(){ 
     console.log("position.length: "+position.length);   
     for (var i = 0; i < position.length; i++) 
@@ -90,6 +90,15 @@ function add(center_lat, center_lng)
 }
 
 function addMarker(e) {
+  const random =Math.floor(Math.random()*5)+1;
+  var icon = {
+    url: '/static/gps_images/'+random+'.png', // url
+    scaledSize: new google.maps.Size(80,80), // scaled size
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(0, 0) // anchor
+  };
+
+
   setTimeout(function() {
     markers.push(new google.maps.Marker({
         position: {
@@ -97,9 +106,20 @@ function addMarker(e) {
           lng: position[e].lng
         },
         map: map,
+        icon:icon,
         //label: position[e].label,
         animation: google.maps.Animation.DROP
       }));
+      // var infowindow = new google.maps.InfoWindow({
+      //   content: '哈摟你好',
+      //   position: {
+      //     lat: position[e].lat,
+      //     lng: position[e].lng
+      //   },
+      //   maxWidth:200,
+      //   pixelOffset: new google.maps.Size(100, -20) 
+      // });
+      // infowindow.open(map,markers);
   }, e * 150);
 }
 
@@ -121,8 +141,9 @@ function initMap()
     }
   });
 
+
   const submit = document.getElementById("submit");
-  submit.addEventListener("click",findLocation,false)
+  submit.addEventListener("click",findLocation,false);
 }
 
 window.addEventListener("load",initMap);
