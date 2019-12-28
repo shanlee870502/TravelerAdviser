@@ -4,8 +4,9 @@
 	<head>
 		<title>在地商家</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="static/assets/css/main.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="static/assets/css/main.css"/>
+		<script src="static/assets/js/local_company.js"></script>
 	</head>
 	<body class="subpage">
 
@@ -19,7 +20,7 @@
 			</header>
 
 		<!-- Menu -->
-		<nav id="menu">
+			<nav id="menu">
 				<ul class="links">
 					<li><a href="index">主頁</a></li>
 					<li><a href="search">搜尋活動</a></li>
@@ -27,7 +28,7 @@
 					<li><a href="localCompany">在地商家</a></li>
 					<li><a href="map">地圖通</a></li>
 				</ul>
-		</nav>
+			</nav>
 
 		<!-- Main -->
 			<section id="main" class="wrapper">
@@ -38,131 +39,24 @@
 					</header>
 					
 					<header class="aligh-left">
-						<h1 style="color:#c28cd1">分類1</h1>
-						<div class="inner flex flex-4">
-							<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
-							<div class="image fit">
-								<img src="static/images/st-t.png" alt="" />
-							</div>
-							<div class="content">
-								<h3 style="color:#c28cd1"> 商家1</h3>
-								<p><b><span style="color:#AAAAAA;">商家資訊 : XXXXXXXXX</span></b></p>				
-							</a></div>
-							</div>
-							<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
-							<div class="image fit">
-								<img src="static/images/st-t.png" alt="" />
-							</div>
-							<div class="content">
-								<h3 style="color:#c28cd1"> 商家2</h3>
-								<p><b><span style="color:#AAAAAA;">商家資訊 : XXXXXXXXX</span></b></p>				
-							</a></div>
-							</div>
-							<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
-							<div class="image fit">
-								<img src="static/images/st-t.png" alt="" />
-							</div>
-							<div class="content">
-								<h3 style="color:#c28cd1"> 商家3</h3>
-								<p><b><span style="color:#AAAAAA;">商家資訊 : XXXXXXXXX</span></b></p>				
-							</a></div>
-							</div>
-							<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
-							<div class="image fit">
-								<img src="static/images/st-t.png" alt="" />
-							</div>
-							<div class="content">
-								<h3 style="color:#c28cd1"> 商家4</h3>
-								<p><b><span style="color:#AAAAAA;">商家資訊 : XXXXXXXXX</span></b></p>				
-							</a></div>
-							</div>
-							
+					<div class="inner flex flex-4">
+						<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
+						<div class="image fit">
+							<img src="static/images/st-t.png" alt="" />
 						</div>
-						<h1 style="color:#4added">分類2</h1>
-						<div class="inner flex flex-4">
-							<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
-							<div class="image fit">
-								<img src="static/images/st-t.png" alt="" />
-							</div>
-							<div class="content">
-								<h3 style="color:#4added"> 商家1</h3>
-								<p><b><span style="color:#AAAAAA;">商家資訊 : XXXXXXXXX</span></b></p>				
-							</a></div>
-							</div>
-							<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
-							<div class="image fit">
-								<img src="static/images/st-t.png" alt="" />
-							</div>
-							<div class="content">
-								<h3 style="color:#4added"> 商家2</h3>
-								<p><b><span style="color:#AAAAAA;">商家資訊 : XXXXXXXXX</span></b></p>				
-							</a></div>
-							</div>
-							<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
-							<div class="image fit">
-								<img src="static/images/st-t.png" alt="" />
-							</div>
-							<div class="content">
-								<h3 style="color:#4added"> 商家3</h3>
-								<p><b><span style="color:#AAAAAA;">商家資訊 : XXXXXXXXX</span></b></p>				
-							</a></div>
-							</div>
-							<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
-							<div class="image fit">
-								<img src="static/images/st-t.png" alt="" />
-							</div>
-							<div class="content">
-								<h3 style="color:#4added"> 商家4</h3>
-								<p><b><span style="color:#AAAAAA;">商家資訊 : XXXXXXXXX</span></b></p>				
-							</a></div>
-							</div>
-							
+						<div class="content">
+							{% for i in event %}
+							<h3 style="color:#7aa14f">{{event['companyName']}}</h3>
+							<p><b><span style="color:#AAAAAA;">商家資訊 :{{event['companyDetail']}}</span></b></p>				
+							{% endfor %}
+						</a></div>
 						</div>
-						<h1 style="color:#7aa14f">分類3</h1>
-						<div class="inner flex flex-4">
-							<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
-							<div class="image fit">
-								<img src="static/images/st-t.png" alt="" />
-							</div>
-							<div class="content">
-								<h3 style="color:#7aa14f"> 商家1</h3>
-								<p><b><span style="color:#AAAAAA;">商家資訊 : XXXXXXXXX</span></b></p>				
-							</a></div>
-							</div>
-							<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
-							<div class="image fit">
-								<img src="static/images/st-t.png" alt="" />
-							</div>
-							<div class="content">
-								<h3 style="color:#7aa14f"> 商家2</h3>
-								<p><b><span style="color:#AAAAAA;">商家資訊 : XXXXXXXXX</span></b></p>				
-							</a></div>
-							</div>
-							<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
-							<div class="image fit">
-								<img src="static/images/st-t.png" alt="" />
-							</div>
-							<div class="content">
-								<h3 style="color:#7aa14f"> 商家3</h3>
-								<p><b><span style="color:#AAAAAA;">商家資訊 : XXXXXXXXX</span></b></p>				
-							</a></div>
-							</div>
-							<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
-							<div class="image fit">
-								<img src="static/images/st-t.png" alt="" />
-							</div>
-							<div class="content">
-								<h3 style="color:#7aa14f"> 商家4</h3>
-								<p><b><span style="color:#AAAAAA;">商家資訊 : XXXXXXXXX</span></b></p>				
-							</a></div>
-							</div>
-							<div class="content"><a href = "/newCompany">新增商家</a></div>
+							
 						</div>
 					</header>
-					
 				</div>
+				<div class="content"><a href = "/newCompany">新增商家</a></div>
 			</section>
-
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="inner">

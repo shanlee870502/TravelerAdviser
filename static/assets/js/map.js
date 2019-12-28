@@ -1,6 +1,6 @@
 var markers = [];
 var position=[];
-var ipconfig = "140.121.199.231:27018"
+const ipconfig = "140.121.199.231:27018"
 var center_lat;
 var center_lng;
 var flag = 1;

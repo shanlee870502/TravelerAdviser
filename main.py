@@ -20,7 +20,8 @@ app.config.from_object('app.config')
 
 client = MongoClient('mongodb+srv://Liao:871029@cluster0-sk2jk.mongodb.net')
 db = client['EventResourse']
-col = db['Event']
+col = db['newEvent2']
+#col = db['Event']
 location_col = db['newEvent2']
 db = MongoEngine(app)
 bcrypt = Bcrypt(app)
@@ -88,6 +89,15 @@ def addCompany():
     company = request.values.to_dict()
     col.insert_one(company)
     return redirect("localCompany")
+
+@app.route('/api/allCompany', methods=['GET','POST'])
+def find_all_company():
+    db = client['localCompany']
+    col = db['company']
+    result = col.find({},{"_id":0,"companyName":1,"companyDetail":1})
+    tmp = list(result)
+    print(tmp)
+    return render_template("localCompany",company = tmp)
 
 @app.route('/register_user',methods=['GET','POST'])
 def register_user():
@@ -208,9 +218,10 @@ def searchEvent():
                 for searchEvent in searchType:
                     temp_event={
                             'eventName' :searchEvent['eventName'],
-                            'http':searchEvent['email_'],
+#                            'http':searchEvent['email_'],
                             'eventM_B' : searchEvent['eventM_B'],
                             'eventLocation' : searchEvent['eventLocation'],
+                            'eventID' : searchEvent['eventID']
                             }
                     searchEvents.append(temp_event)
             return jsonify(searchEvents)
@@ -237,9 +248,10 @@ def searchEvent():
                     print(match)
                     events={
                         'eventName' :match['eventName'],
-                        'email':match['email_'],
+#                        'email':match['email_'],
                         'eventM_B' : match['eventM_B'].replace("T"," "),
                         'eventLocation' : match['eventLocation'],
+                        'eventID' : match['eventID']
                     }
                     print(events)
                     searchEvents.append(events)
@@ -253,9 +265,10 @@ def searchEvent():
                 count+=1
                 events={
                     'eventName' :match['eventName'],
-                    'email':match['email_'],
+#                    'email':match['email_'],
                     'eventM_B' : match['eventM_B'].replace("T"," "),
                     'eventLocation' : match['eventLocation'],
+                    'eventID' : match['eventID']
                 }
                 print(events)
                 searchEvents.append(events)
@@ -270,9 +283,10 @@ def searchEvent():
             for match in lastupload:
                 events={
                     'eventName' :match['eventName'],
-                    'email':match['email_'],
+#                    'email':match['email_'],
                     'eventM_B' : match['eventM_B'].replace("T"," "),
                     'eventLocation' : match['eventLocation'],
+                    'eventID' : match['eventID']
                 }
                 print(events)
                 searchEvents.append(events)
