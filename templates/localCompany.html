@@ -6,7 +6,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<link rel="stylesheet" href="static/assets/css/main.css"/>
-		<script src="static/assets/js/local_company.js"></script>
 	</head>
 	<body class="subpage">
 
@@ -37,25 +36,32 @@
 						<h1 style="color:#f5b369">在地商家</h1>
 						<p>你可以在這裡，找到你的需求</p>
 					</header>
-					
 					<header class="aligh-left">
-					<div class="inner flex flex-4">
-						<div class="flex-item box"><a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
-						<div class="image fit">
-							<img src="static/images/st-t.png" alt="" />
-						</div>
-						<div class="content">
-							{% for i in event %}
-							<h3 style="color:#7aa14f">{{event['companyName']}}</h3>
-							<p><b><span style="color:#AAAAAA;">商家資訊 :{{event['companyDetail']}}</span></b></p>				
-							{% endfor %}
-						</a></div>
-						</div>
-							
-						</div>
+					<div class="tab-inner">
+						<span>
+							<div class="inner flex flex-3">
+								{% for i in company %}
+									<form class="flex-item box"> 
+										<a href="https://google.com.tw"style="text-decoration:none;"target="_blank">
+											<div class="image fit">
+												<img src="static/images/st-t.png" alt="" />
+											</div>
+											<div class="content">
+												
+												<h3 style="color:#7aa14f">{{i.companyName}}</h3>
+												<p><b><span style="color:#AAAAAA;">商家資訊 :{{i.companyDetail}}</span></b></p>
+											</div>
+										</a>				
+									</form>
+								{% endfor %}
+							</div>	
+						</span>	
+					</div>
+					<div class="content"><a href = "/newCompany">新增商家</a></div>
 					</header>
+					
 				</div>
-				<div class="content"><a href = "/newCompany">新增商家</a></div>
+				
 			</section>
 		<!-- Footer -->
 			<footer id="footer">
@@ -79,3 +85,4 @@
 
 	</body>
 </html>
+

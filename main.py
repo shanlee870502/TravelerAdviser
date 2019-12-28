@@ -90,14 +90,14 @@ def addCompany():
     col.insert_one(company)
     return redirect("localCompany")
 
-@app.route('/api/allCompany', methods=['GET','POST'])
+@app.route('/localCompany', methods=['GET','POST'])
 def find_all_company():
     db = client['localCompany']
     col = db['company']
     result = col.find({},{"_id":0,"companyName":1,"companyDetail":1})
     tmp = list(result)
     print(tmp)
-    return render_template("localCompany",company = tmp)
+    return render_template("localCompany.html", company = tmp)
 
 @app.route('/register_user',methods=['GET','POST'])
 def register_user():
@@ -201,9 +201,6 @@ def complete():
 def searchPage():
     return render_template('search.html')
 
-@app.route('/localCompany',methods=['GET','POST'])
-def local_company():
-    return render_template('localCompany.html')
 
 @app.route('/searchcomplete', methods=['GET','POST'])
 def searchEvent():
