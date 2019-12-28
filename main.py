@@ -1,6 +1,7 @@
 import os
 import flask
 from flask import render_template, request, jsonify, redirect, url_for, make_response
+from flask_bcrypt import Bcrypt
 from flask_security import Security, MongoEngineUserDatastore ,login_user, logout_user, UserMixin, RoleMixin, login_required, current_user, roles_accepted
 from pymongo import MongoClient
 from flask_mongoengine import MongoEngine
@@ -19,7 +20,11 @@ db = client['EventResourse']
 col = db['Event']
 location_col = db['newEvent']
 db = MongoEngine(app)
+bcrypt = Bcrypt(app)
 
+def hashPassword(password):
+    pw_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+    return pw_hash
 
 # 不同種權限身份
 class Role(db.Document, RoleMixin):
@@ -47,19 +52,19 @@ security._state.unauthorized_handler(unauthorized_callback)
 @app.before_first_request
 def create_user():
     user_role = user_datastore.find_or_create_role('user')
-    if user_datastore.get_user('user') == None:
+    if user_datastore.get_user('user') == None:       
         user_datastore.create_user(
-            email='user', password='user', roles=[user_role]
+            email='user', password = hashPassword('user'), roles=[user_role]
         )
     admin_role = user_datastore.find_or_create_role('admin')
     if user_datastore.get_user('root') == None:
         user_datastore.create_user(
-            email='root', password='root', roles=[admin_role]
+            email='root', password = hashPassword('root'), roles=[admin_role]
         )
     guest_role = user_datastore.find_or_create_role('guest')
     if user_datastore.get_user('guest') == None:
         user_datastore.create_user(
-            email='guest', password='guest', roles=[guest_role]
+            email='guest', password = hashPassword('guest'), roles=[guest_role]
         )
         
 def insert_data(event):
@@ -87,7 +92,10 @@ def login_Use():
     userdb =client['flaskTest']
     user_col=userdb['user']
     print(user_col.find_one({'email':nowUser['email']}))
-    if user_col.find_one({'email':nowUser['email'],'password':nowUser['password']}) is None:
+    user_in_db =user_col.find_one({'email':nowUser['email']})
+    if user_in_db is None or bcrypt.check_password_hash(user_in_db['password'], nowUser['password']) is False:
+        print(user_in_db)
+        print(bcrypt.check_password_hash(user_in_db['password'], nowUser['password']))
         return redirect('/login')
     nowUser=user_datastore.get_user(nowUser['email'])
     login_user(nowUser)
