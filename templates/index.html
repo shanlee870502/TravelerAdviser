@@ -123,7 +123,7 @@
 				function setResult_1(searchResult){
 				$('#latestEvent_1').empty();
 				var popContent='<h1 style="font-size:50px; text-align:center;" >最新活動</h1><div class="inner flex flex-3">';
-				for(var i=0;i<3;i++){
+				for(var i=0;i<6;i++){
 						popContent +=//enctype="multipart/form-data
 							'<form action="/eventdetails" class="flex-item box" method="GET" " name="form-search'+i+'" id="form-search'+i+'"><input type="hidden" name="eventName" value="'+searchResult[i].eventName+'">'+
 							'<div  onClick="document.forms[\'form-search'+i+'\'].submit();"><a style="text-decoration:none;" target="_blank">';
@@ -143,7 +143,7 @@
 				function setResult_2(searchResult){
 				$('#latestEvent_2').empty();
 				var popContent='<h1 style="font-size:50px; text-align:center;" >近期建立</h1><div class="inner flex flex-3">';
-				for(var i=0;i<3;i++){
+				for(var i=0;i<6;i++){
 						popContent +=
 							'<form action="/eventdetails" class="flex-item box" method="GET" name="form-search'+(i+3)+'" id="form-search'+(i+3)+'"> <input type="hidden" name="eventName" value="'+searchResult[i].eventName+'">'+
 							'<div onClick="document.forms[\'form-search'+(i+3)+'\'].submit();"><a style="text-decoration:none;" target="_blank">';
@@ -155,6 +155,8 @@
 							'<p><b><span style="color:#AAAAAA;">活動時間 : <br>'+searchResult[i].eventM_B+'</b></p>'+
 							'<p><b><span style="color:#AAAAAA;">活動地點 : <br>'+searchResult[i].eventLocation+'</span></b></p>'+
 							'</div></a></div></form>';
+						$(".banner").delay(2000).fadeOut(200);
+						$(".banner" ).delay(2000).css("background-image", url("static/images/"+searchResult[i].eventID)); 
 					}
 					popContent += '</div><div align="center"><b><a href="#" style="text-align:center;width:20%;font-size:23px;color:#25a2c3;text-decoration:none;"><br>SEE MORE</a></b></div>';
 				$('#latestEvent_2').append(popContent);
