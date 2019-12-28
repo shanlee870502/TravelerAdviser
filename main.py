@@ -8,6 +8,8 @@ from pymongo import MongoClient
 from flask_mongoengine import MongoEngine
 from werkzeug.utils import secure_filename
 import jieba
+from bson import ObjectId
+from datetime import datetime
 from models import Map
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
@@ -165,6 +167,10 @@ def allowed_file(filename):
 def complete():
     #activity_data是使用者輸入表單的資料    
     activity_data = request.values.to_dict()
+    randomSeedByNow = datetime.now()
+    eventID = ObjectId.from_datetime(randomSeedByNow)
+    activity_data['eventID'] = eventID
+    
     insert_data(activity_data)
     #print(activity_data)
     if 'event_photo' not in request.files:
@@ -178,7 +184,7 @@ def complete():
         elif file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             print(filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], activity_data['eventName']+".jpg"))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], activity_data['eventID']+".jpg"))
     return render_template('eventsBuild.html',title='MyActivity', activity=activity_data)
 
 @app.route('/search', methods=['GET'])
