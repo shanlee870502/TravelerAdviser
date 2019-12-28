@@ -251,7 +251,7 @@ def searchEvent():
 #                        'email':match['email_'],
                         'eventM_B' : match['eventM_B'].replace("T"," "),
                         'eventLocation' : match['eventLocation'],
-                        'eventID' : match['eventID']
+                        'eventID' :match['eventID']
                     }
                     print(events)
                     searchEvents.append(events)
