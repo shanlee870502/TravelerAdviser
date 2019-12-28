@@ -5,6 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="static/assets/css/main.css" />
+		<link rel="stylesheet" href="static/assets/css/act_info.css" />
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<!-- Animate.css v3.5.2 -->
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet"  />
@@ -35,16 +36,35 @@
 			</nav>
 
 		<!-- Main -->
-			<section id="main" class="wrapper">
-				<div class="inner">
-					<form method=["POST"] action="/complete" enctype="multipart/form-data">	
-						<h2 id="title" class="animated bounce infinite" style="text-align:center"><span style="color:#008F7E;" id="theName" >{{activity.eventName}}</span></h2> 
-						
-						<img src="/assets/img/Calendar.svg" alt="" width="32" height="32">
-						<div id="date">日期:&nbsp;&nbsp;<span style="color:#008F7E;">{{activity.eventM_B}}~{{activity.eventM_F}}</span></div>
-					</form>	
+		
+		<section id="main" class="wrapper">
+			<div class="inner">
+				<form method=["POST"] action="/complete" enctype="multipart/form-data">	
+					<h2 id="title" class="animated bounce infinite" style="text-align:center"><span style="color:#008F7E;" id="theName" >{{activity.eventName}}</span></h2> 
+					<img src="/assets/img/Calendar.svg"  class="center" alt="" width="32" height="32">
+					<span id="eventPhoto"></span><br>
+					<h3 id="">
+					<h3 id="date">活動日期:&nbsp;&nbsp;<span style="color:#008F7E;">{{activity.eventM_B}}~{{activity.eventM_F}}</span></h3>
+					<br>
+					<h3 id="place">活動地點:&nbsp;&nbsp;<span style="color:#008F7E;" id="theLocation">{{activity.eventLocation}}</h2>
+						<span id="googleMap" ></span></span>
+					</h3><br>
+					<h3 id="content">活動詳情:&nbsp;&nbsp;<span style="color:#008F7E">{{activity.eventDetail}}</span></h3>
+					
+				</form>	
+				<!-- Form -->
+				
+				<div class="act_info">
+					<h3 style="text-align:center">聯絡人資訊</h3>
+					<div><h4 style="color:#008F7E;">承辦人: {{activity.name_}}</h4></div>
+					<div><h4 style="color:#008F7E;">Email: {{activity.email_}}</h4></div>
+					<div><h4 style="color:#008F7E;">連絡電話:{{activity.phonenum_}}</h4></div>
+					<div><h4 style="color:#008F7E;">地址: {{activity.address_}}</h4></div>
+					<!-- <div class="12u$"><h4 style="color:#008F7E;">{{activity.remark}}</h4></div> -->
 				</div>
-			</section>
+		</form>
+			</div>
+		</section>
 
 		<!-- Footer -->
 			<footer id="footer">
