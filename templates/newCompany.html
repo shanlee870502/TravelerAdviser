@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>建立活動</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="static/assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<nav class="left">
+					<a href="#menu"><span>Menu</span></a>	
+				</nav>
+				<a href="upLoadEvent" class="logo">新增商家</a>
+				<div id="nlogin">
+					<!--<nav class="right" ><a href="login" class="button alt">登入</a></nav>-->
+				</div>
+				<div id="alogin", style="display: none">
+
+				</div>
+				</nav>
+				
+			</header>
+
+		<!-- Menu -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="index.html">主頁</a></li>
+				<li><a href="generic.html">搜尋活動</a></li>
+				<li><a href="elements.html">建立活動</a></li>
+				<li><a href="local.html">在地商家</a></li>
+				<li><a href="map.html">地圖通</a></li>
+			</ul>
+		</nav>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h1>新增商家</h1>
+					</header>
+					<!-- Content -->
+						<form action="/addCompany"  method="post" enctype="multipart/form-data">					
+						<p>
+							<label> 商家名稱:
+								<input type="text" name="companyName" id="compamyName" placeholder="請輸入商家名稱" autofocus required="required">
+							</label>
+						</p>
+                        <p>
+							<label> 商家詳細資訊:
+								<input type="text" name="companyDetail" id="companyDetail placeholder="請輸入商家名稱" autofocus required="required">
+							</label>
+                        </p>
+                        <div class="12u$">
+                            <ul class="actions">
+                                <li><input type="submit" value="確認送出" /></li>
+                                <li><input type="reset" value="取消" class="alt" /></li>
+                            </ul>
+                        </div>
+						</form>
+					<hr/>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h2>Seafood Allergy</h2>
+					<ul class="actions">
+						<li><span class="icon fa-phone"></span> <a href="#">0965728008</a></li>
+						<li><span class="icon fa-envelope"></span> <a href="#">kaz749283@gmail.com</a></li>
+						<li><span class="icon fa-map-marker"></span> 123 Somewhere Road, Nashville, TN 00000</li>
+					</ul>
+					<p>Author:WEI WANG Hopeful LEE Wei KUANG CAPTAIN LIANG SHAN LEE </p>
+				</div>
+			</footer>
+
+
+		<!-- Scripts -->
+		<script src="static/assets/js/jquery.min.js"></script>
+		<script>
+			$("#event_photo").change(function(){
+			readURL(this);
+			});
+			function readURL(input){ 
+				if(input.files && input.files[0]){ 
+				var reader = new FileReader(); 
+				reader.onload = function (e) {
+				$("#event_img").attr('src', e.target.result); }
+				reader.readAsDataURL(input.files[0]);}
+			}
+			var RightNow = new Date();
+			var M = addZero(RightNow.getMonth() + 1);
+			var d = addZero(RightNow.getDate());
+			var h = addZero(RightNow.getHours());
+			var m = addZero(RightNow.getMinutes());
+		    function addZero(i) {
+		     if (i < 10) i = "0" + i;
+		      return i;
+		    }
+		    $(document).ready(function(){
+				$("#eventM_B").val(RightNow.getFullYear() + "-"+ M + "-" + d + "T" + h + ":" + m);});
+		    $(document).ready(function(){
+				$("#eventM_F").val(RightNow.getFullYear() + "-"+ M + "-" + d + "T" + h + ":" + m);});
+		</script>
+		
+		<script src="static/assets/js/jquery.scrolly.min.js"></script>
+		<script src="static/assets/js/skel.min.js"></script>
+		<script src="static/assets/js/util.js"></script>
+		<script src="static/assets/js/main.js"></script>
+		<script>
+		
+	</body>
+	
+</html>

@@ -18,7 +18,7 @@ app.config.from_object('app.config')
 client = MongoClient('mongodb+srv://Liao:871029@cluster0-sk2jk.mongodb.net')
 db = client['EventResourse']
 col = db['Event']
-location_col = db['newEvent']
+location_col = db['newEvent2']
 db = MongoEngine(app)
 bcrypt = Bcrypt(app)
 
@@ -73,13 +73,19 @@ def insert_data(event):
         print('insert success')
     #else:
         #print(col.find_one({"eventName":event["eventName"]}))
+@app.route('/newCompany', methods=['GET', 'POST'])
+def newCompany():
+    return render_template("newCompany.html")
 
-#@app.route('/')
-#def login():
-#    if current_user.is_authenticated:
-#        return redirect('index.html')
-#    return render_template('login.html')
-#  
+@app.route('/addCompany', methods=['GET', 'POST'])
+@login_required
+def addCompany():
+    db = client['localCompany']
+    col = db['company']
+    company = request.values.to_dict()
+    col.insert_one(company)
+    return redirect("localCompany")
+
 @app.route('/register_user',methods=['GET','POST'])
 def register_user():
     create_user = request.values.to_dict()
