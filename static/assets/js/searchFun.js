@@ -31,7 +31,7 @@ function setResult(searchResult)
 				'<form action="/eventdetails" class="flex-item box"  method="GET"  name="form-search'+(i*3+j)+'" id="form-search'+(i*3+j)+'"><input type="hidden" name="eventName" value="'+searchResult[(i*3+j)].eventName+'">'+
 				'<div  onClick="document.forms[\'form-search'+(i*3+j)+'\'].submit();"><a style="text-decoration:none;" target="_blank">';
 			popContent +=
-				'<div class="image fit"><img src="static/images/'+searchResult[(i*3+j)].eventName+'.jpg" alt="" /></div>';
+				'<div class="image fit"><img src="static/images/'+searchResult[(i*3+j)].eventID+'.jpg" alt="" /></div>';
 			popContent +=
 				'<div class="content">'+
 				'<h3>'+searchResult[i*3+j].eventName+'</h3>'+
