@@ -3,7 +3,7 @@ UPLOAD_FOLDER = 'static/images'
 DEBUG = True
 SECRET_KEY = 'super-secret'
 SECURITY_PASSWORD_SALT = 'bcrypt'
-
+SECURITY_LOGIN_USER_TEMPLATE= 'login.html'
 
 
 #MongoDB Config
