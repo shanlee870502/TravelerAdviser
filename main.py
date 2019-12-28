@@ -80,7 +80,7 @@ def insert_data(event):
 #        return redirect('index.html')
 #    return render_template('login.html')
 #  
-@app.route('/register_user',method=['GET','POST'])
+@app.route('/register_user',methods=['GET','POST'])
 def register_user():
     create_user = request.values.to_dict()
 
@@ -93,9 +93,9 @@ def register_user():
 #    repeat_text = "該使用者已被註冊"
     return redirect('register')
 
-@app.route('/register',method=['GET','POST'])
+@app.route('/register.html',methods=['GET','POST'])
 def register_page():
-    return render_template("Register.html",judgeRepeat = "")
+    return render_template("Register.html")
 
 
         
@@ -120,7 +120,7 @@ def login_Use():
     login_user(nowUser)
     return redirect('index')
            
-@app.route('/logout_user', method=['GET','POST'])
+@app.route('/logout_user', methods=['GET','POST'])
 def logout_Use():
     logout_user()
            
