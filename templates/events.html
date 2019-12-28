@@ -5,8 +5,11 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="static/assets/css/main.css" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<!-- Animate.css v3.5.2 -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet"  />
 	</head>
-	<body class="subpage">
+	<body class="animated">
 
 		<!-- Header -->
 			<header id="header">
@@ -27,51 +30,19 @@
 					<li><a href="search">搜尋活動</a></li>
 					<li><a href="upLoadEvent">建立活動</a></li>
 					<li><a href="localCompany">在地商家</a></li>
-					<li><a href="map">漁村小尖兵</a></li>
+					<li><a href="map">地圖通</a></li>
 				</ul>
 			</nav>
 
 		<!-- Main -->
 			<section id="main" class="wrapper">
 				<div class="inner">
-					<form method=["POST"] action="/complete" enctype="multipart/form-data">			
-					<!-- Content -->
-					<h2 id="content">活動名稱:&nbsp;&nbsp;<span style="color:#008F7E;" id="theName">{{activity.eventName}}</span></h2>
-						<h2 id="content">封面宣傳照</h2>
-						<span id="eventPhoto"></span>
-		
-						<h2 id="content">活動日期:&nbsp;&nbsp;<span style="color:#008F7E;">{{activity.eventM_B}}~{{activity.eventM_F}}</span></h2>
+					<form method=["POST"] action="/complete" enctype="multipart/form-data">	
+						<h2 id="title" class="animated bounce infinite" style="text-align:center"><span style="color:#008F7E;" id="theName" >{{activity.eventName}}</span></h2> 
 						
-						<h2 id="content">活動地點:&nbsp;&nbsp;<span style="color:#008F7E;" id="theLocation">{{activity.eventLocation}}</h2>
-						<span id="googleMap" ></span>
-
-						<h2 id="content">活動詳情、說明</h2>
-						<h2 style="color:#008F7E">{{activity.eventDetail}}</h2>
-
-						<h2 id="content">活動規劃進度</h2> -->
-						<div>
-								<a href="javascript:;" onclick="document.getElementById('nec_hid').style.display='none'">
-									<input type="radio" id="Y" name="eventReady" value="Y" checked >
-									<label for="Y" style="font-size: 23px;">已籌畫完成</label></a>
-								<a href="javascript:;" onclick="document.getElementById('nec_hid').style.display=''">
-									<input type="radio" id="N" name="eventReady" value="N" >
-									<label for="N" style="font-size: 23px;">我仍在籌畫</label></a>
-						</div> 
-						<div id="nec_hid" style="display: none"> <label >籌備所需<h2 style="color:#008F7E;">{{activity.necessary}}</h2></label></div>
-					<hr class="major" />
-
-						<!-- Form -->
-							<h1>活動聯絡人資訊</h1>
-								<div class="row uniform">
-									<div class="6u 12u$(xsmall)"><h2 style="color:#008F7E;">{{activity.name_}}</h2></div>
-									<div class="6u$ 12u$(xsmall)"><h2 style="color:#008F7E;">{{activity.email_}}</h2></div>
-									<div class="6u 12u$(xsmall)"><h2 style="color:#008F7E;">{{activity.phonenum_}}</h2></div>
-									<div class="12u$"><h2 style="color:#008F7E;">{{activity.address_}}</h2></div>
-									<div class="12u$"><h2 style="color:#008F7E;">{{activity.remark}}</h2></div>
-								</div>
-						</form>
-					<hr/>
-					<div><a href="map" class="button scrolly">點選我找附近景點/活動</a></div>
+						<img src="/assets/img/Calendar.svg" alt="" width="32" height="32">
+						<div id="date">日期:&nbsp;&nbsp;<span style="color:#008F7E;">{{activity.eventM_B}}~{{activity.eventM_F}}</span></div>
+					</form>	
 				</div>
 			</section>
 
