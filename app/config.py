@@ -8,6 +8,7 @@ SECURITY_PASSWORD_SALT = 'bcrypt'
 
 #MongoDB Config
 MONGODB_HOST = "mongodb+srv://Liao:871029@cluster0-sk2jk.mongodb.net/flaskTest"
+#user_passwordDB
 MONGODB_DB = True
 
 JSON_AS_ASCII = False

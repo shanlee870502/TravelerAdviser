@@ -79,7 +79,26 @@ def insert_data(event):
 #    if current_user.is_authenticated:
 #        return redirect('index.html')
 #    return render_template('login.html')
-#    
+#  
+@app.route('/register_user',method=['GET','POST'])
+def register_user():
+    create_user = request.values.to_dict()
+
+    user_role = user_datastore.find_or_create_role('user')
+    if user_datastore.get_user(create_user['username']) == None:
+        user_datastore.create_user(
+            email = create_user['username'], password = hashPassword(create_user['password']), roles=[user_role]
+        )
+        return redirect('/login')
+#    repeat_text = "該使用者已被註冊"
+    return redirect('register')
+
+@app.route('/register',method=['GET','POST'])
+def register_page():
+    return render_template("Register.html",judgeRepeat = "")
+
+
+        
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST']) 
 def login():
@@ -101,6 +120,9 @@ def login_Use():
     login_user(nowUser)
     return redirect('index')
            
+@app.route('/logout_user', method=['GET','POST'])
+def logout_Use():
+    logout_user()
            
 @app.route('/index', methods=['GET'])
 def home():
@@ -289,6 +311,5 @@ def map():
     return render_template("map.html")
 
 app.run(host="140.121.199.231", port=27018)
-#127.0.0.1
-#140.121.199.231
+
 
