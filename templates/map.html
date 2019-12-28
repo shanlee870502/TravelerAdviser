@@ -1,20 +1,59 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+
 <html>
-  <head>
+	<head>
+		<title>地圖通</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />  
+    <link rel="stylesheet" href="static/assets/css/main.css" />
     <script src="static/assets/js/map.js"></script>
+    <!--Map -->
     <link rel="stylesheet" href="static/assets/css/map.css" />
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1CriIa5SUuz2nx9H0N92hKSoEC4himHE&callback=initMap">
     </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  </head>
-  <body>
-    <div id="findPlace">
-      <input class="form-control" style="width:50%" id="address" type="text" placeholder="請輸入您所在的位置">
-      <br>
-      <button type="button" class="btn btn-success" id="submit">送出</button>
-      <button type="button" class="btn btn-primary" id="findbutton" style="display:none">找附近景點</button>
-    </div> 
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<nav class="left">
+					<a href="#menu"><span>Menu</span></a>
+				</nav>
+				<a href="index" class="logo">地圖通</a>
+				<!--<nav class="right" ><a href="login" class="button alt">登入</a></nav>-->
+			</header>
+
+		<!-- Menu -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index">主頁</a></li>
+					<li><a href="search">搜尋活動</a></li>
+					<li><a href="upLoadEvent">建立活動</a></li>
+					<li><a href="localCompany">在地商家</a></li>
+					<li><a href="map">地圖通</a></li>
+				</ul>
+			</nav>
+    
+    <section id="main" class="wrapper">
+      <div id="findPlace">
+        <input class="form-control" style="width:50%" id="address" type="text" placeholder="請輸入您所在的位置">
+        <br><br>
+        <button type="button" class="btn btn-success" id="submit">送出</button>
+        <button type="button" class="btn btn-primary" id="findbutton" style="display:none">找附近景點</button>
+      </div> 	
+    </section>
     <div id="map"></div>
-  </body>
+		<!-- Main -->
+
+		
+		<!-- Scripts -->
+			<script src="static/assets/js/jquery.min.js"></script>
+			<script src="static/assets/js/jquery.scrolly.min.js"></script>
+			<script src="static/assets/js/skel.min.js"></script>
+			<script src="static/assets/js/util.js"></script>
+			<script src="static/assets/js/main.js"></script>
+
+	</body>
 </html>
