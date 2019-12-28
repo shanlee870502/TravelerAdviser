@@ -211,6 +211,7 @@ def searchEvent():
                             'http':searchEvent['email_'],
                             'eventM_B' : searchEvent['eventM_B'],
                             'eventLocation' : searchEvent['eventLocation'],
+                            'eventID' : searchEvent['eventID']
                             }
                     searchEvents.append(temp_event)
             return jsonify(searchEvents)
@@ -240,6 +241,7 @@ def searchEvent():
                         'email':match['email_'],
                         'eventM_B' : match['eventM_B'].replace("T"," "),
                         'eventLocation' : match['eventLocation'],
+                        'eventID' :match['eventID']
                     }
                     print(events)
                     searchEvents.append(events)
@@ -256,6 +258,7 @@ def searchEvent():
                     'email':match['email_'],
                     'eventM_B' : match['eventM_B'].replace("T"," "),
                     'eventLocation' : match['eventLocation'],
+                    'eventID' : match['eventID']
                 }
                 print(events)
                 searchEvents.append(events)
@@ -273,6 +276,7 @@ def searchEvent():
                     'email':match['email_'],
                     'eventM_B' : match['eventM_B'].replace("T"," "),
                     'eventLocation' : match['eventLocation'],
+                    'eventID' : match['eventID']
                 }
                 print(events)
                 searchEvents.append(events)

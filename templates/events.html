@@ -50,7 +50,7 @@
 						<span id="googleMap" ></span></span>
 					</h3><br>
 					<h3 id="content">活動詳情:&nbsp;&nbsp;<span style="color:#008F7E">{{activity.eventDetail}}</span></h3>
-					
+					<h3 id="theID">{{activity.eventID}}</h3>
 				</form>	
 				<!-- Form -->
 				
@@ -83,11 +83,13 @@
 		<script src="static/assets/js/jquery.min.js"></script>
 		<script>
 		$(document).ready(function(){
+			console.log($('#theID').text());
 			$('#eventPhoto').empty();
 			var popContent =			
 				"<img style='width:1080px;height:540px;' src='static/images/"+
-				$('#theName').text()+
+				$('#theID').text()+
 				".jpg'><br>";
+				console.log(popContent);
 				$('#eventPhoto').append(popContent);
 			});
 			
