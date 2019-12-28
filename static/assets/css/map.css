@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     margin: 10px;
     padding: 10px;
+    font-family: Microsoft JhengHei;
 }
 #map {
     height: 90%;

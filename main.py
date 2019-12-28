@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import flask
 from flask import render_template, request, jsonify, redirect, url_for, make_response
@@ -152,8 +153,7 @@ def home():
 
 @app.route('/upLoadEvent')
 @login_required
-@roles_accepted('user','root')
-
+@roles_accepted('admin')
 def element():
     return render_template("upLoadEvent.html")
 
