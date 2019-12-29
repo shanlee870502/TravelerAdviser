@@ -22,7 +22,6 @@ client = MongoClient('mongodb+srv://Liao:871029@cluster0-sk2jk.mongodb.net')
 db = client['EventResourse']
 col = db['newEvent2']
 #col = db['Event']
-location_col = db['newEvent2']
 db = MongoEngine(app)
 bcrypt = Bcrypt(app)
 #密碼加密
@@ -153,25 +152,11 @@ def login_Use():
 def logout_Use():
     logout_user()
            
-@app.route('/index', methods=['GET'])
+@app.route('/index', methods=['GET','POST'])
 def home():
-    temp_events=list()
-    event={
-       "http":"http://www.accupass.com/event/1904040739571150361040",
-       "img":"static/images/pic01.jpg"
-       }
-    temp_events.append(event)
-    event={
-           "http":"http://www.accupass.com/event/1909140357534178828000",
-           "img":"static/images/pic02.png"
-           }
-    temp_events.append(event)
-    event={
-           "http":"http://www.accupass.com/event/1901271544488531904750",
-           "img":"static/images/pic03.png"
-           }
-    temp_events.append(event)
-    return render_template("index.html",event = temp_events)
+    strNow = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
+    result = col.aggregate([{"$match":{'eventM_F':{'$gte':strNow}}},{ "$sort": { "eventM_B": 1 }},{ "$limit" : 10 }])
+    return render_template("index.html", bulletin=list(result))
 
 @app.route('/upLoadEvent')
 @login_required
@@ -247,13 +232,9 @@ def searchEvent():
             segments = jieba.cut(text, cut_all=False)
             
             remainderWords = list(filter(lambda a: a not in stopWords and a != '\n', segments))
-            #print(remainderWords)
             for word in remainderWords:
                 findEvents = col.find({"eventName" : {'$regex' : ".*"+word+".*"}})
-                print(findEvents)
-                #print(word)
                 for match in findEvents:
-                    print(match)
                     events={
                         'eventName' :match['eventName'],
 #                        'email':match['email_'],
@@ -261,12 +242,10 @@ def searchEvent():
                         'eventLocation' : match['eventLocation'],
                         'eventID' :match['eventID']
                     }
-                    print(events)
                     searchEvents.append(events)
             return jsonify(searchEvents)
         #3 Latest event 
         if data['type']=='recently':
-            print('here')
             strNow = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
             lastupload = col.aggregate([{"$match":{'eventM_F':{'$gte':strNow}}},{ "$sort": { "eventM_B": 1 }}])
             count = 0
@@ -279,7 +258,6 @@ def searchEvent():
                     'eventLocation' : match['eventLocation'],
                     'eventID' : match['eventID']
                 }
-                print(events)
                 searchEvents.append(events)
                 if count == 3:
                     break
@@ -302,12 +280,6 @@ def searchEvent():
                 searchEvents.append(events)
             return jsonify(searchEvents)
 
-
-# @app.route('/eventdetails',methods=['GET','POST'])
-# def showEvents():
-#     data= request.values.to_dict()
-#     activity_data=col.find_one({"eventName":data["eventName"]})
-#     return render_template('events.html',activity= activity_data)
 @app.route('/eventdetails',methods=['GET','POST'])
 def showEvents():
     data= request.values.to_dict()

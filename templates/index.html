@@ -14,7 +14,7 @@
 					<a href="#menu"><span>Menu</span></a>
 				</nav>		
 				<a href="index" class="logo">SeafoodAllergy</a>
-				<a href="logout_user" class="button scrolly">登出</a>
+				<a href="logout" class="button scrolly">登出</a>
 				<!--<nav class="right" ><a href="login" class="button alt">登入</a></nav>-->
 			</header>
 
@@ -28,7 +28,6 @@
 					<li><a href="map">地圖通</a></li>
 				</ul>
 			</nav>
-
 		<!-- Banner -->
 			<section id="banner">
 				<div class="content">
@@ -63,32 +62,12 @@
 				<h1 style="font-size:50px;">公告欄</h1>
 				<div class="inner" >
 					<ul class="bulletin_ul">
+						{% for activity in bulletin%}
 						<li><a>
-							   <div class="newEvent">看見台灣農村之美農村再生攝影徵件活動</div>
-							   <div class="newDate">2019.10.07~2019.10.31</div>
+							   <div class="newEvent">{{activity.eventName}}</div>
+							   <div class="newDate">{{activity.eventM_B}}</div>
 						</a></li>
-						<li><a>
-								<div class="newEvent">「2019基隆移民節」火熱報名中！</div>
-								<div class="newDate">2019.11.23</div>
-								</a></li>
-						<li><a>
-								<div class="newEvent">海軍108年國防知性之旅—營區開放活動來囉！</div>
-								<div class="newDate">2019.09.28</div></a>
-						</li>
-						<li>
-							<a>
-								<div class="newEvent">「小城故事多-基隆在地行動GO」108年學習型城市計畫 </div>
-								<div class="newDate">2019.08.30~2019.11.09</div></a></li>
-						<li>
-							<a>
-								<div class="newEvent">「108年度基隆市社區規劃師(建築師)駐地輔導計畫」社區規劃輔導工作營-錄取名單</div>
-								<div class="newDate">2019.08.17~2019.09.08</div></a>
-						</li>
-						<li>
-							<a>
-								<div class="newEvent">預約幸福婚姻家庭系列學習課程Ⅰ～108年推展家庭教育-婚姻教育計畫</div>
-								<div class="newDate">2019.09.21~2019.11.02</div></a>
-						</li>	
+						{%endfor%}
 					</ul>
 					<div align="center"><b><a href="#" style="text-align:center;width:20%;font-size:23px;color:#DAF5F5;text-decoration:none;"><br>SEE MORE</a></b></div>
 				</div>
