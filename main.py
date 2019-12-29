@@ -267,9 +267,7 @@ def searchEvent():
         if data['type']=='recently':
             print('here')
             strNow = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
-            lastupload = col.find({'eventM_F':{'$gte':strNow}})
-                
-            lastupload = lastupload.aggregate([{ "$sort": { "eventM_B": -1 } }])
+            lastupload = col.aggregate([{"$match":{'eventM_F':{'$gte':strNow}}},{ "$sort": { "eventM_B": 1 }}])
             count = 0
             for match in lastupload:
                 count+=1

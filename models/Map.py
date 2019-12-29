@@ -4,7 +4,7 @@ Created on Wed Dec 18 11:07:27 2019
 
 @author: ntou-nlp
 """
-
+from datetime import datetime
 import math
 from pymongo import MongoClient
 
@@ -27,7 +27,9 @@ def myGetDistance(p1,p2):
 
 def FindNearLocation(lat, lng):
     distances = {}
-    for event in colEvent.find():
+    strNow = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
+    recentEvent = colEvent.find({'eventM_F':{'$gte':strNow}})
+    for event in recentEvent:
         try:
             distance = myGetDistance({'lat':lat,'lng':lng},event['location'])
             distances[event['eventName']] = distance
