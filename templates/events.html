@@ -11,7 +11,10 @@
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet"  />
 	</head>
 	<body class="animated">
-
+		<!--fb shared develop-->
+		<div id="fb-root"></div>
+		<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v5.0&appId=563432047547721&autoLogAppEvents=1"></script>
+		
 		<!-- Header -->
 			<header id="header">
 				<nav class="left">
@@ -54,6 +57,9 @@
 					<h3 id="theID"style="display:none;">{{activity.eventID}}</h3>
 
 				</form>	
+
+				
+				<div class="fb-share-button" data-href="http://140.121.199.231:27018/eventdetails?eventName="+ {{activity.eventName}} +"&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">分享</a></div>
 				<!-- Form -->
 				
 				<!-- <div class="act_info">
