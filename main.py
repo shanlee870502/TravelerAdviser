@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import flask
-from flask import render_template, request, jsonify, redirect, url_for, make_response
+from flask import render_template, request, jsonify, redirect, url_for, make_response, flash
 from flask_bcrypt import Bcrypt
 from flask_security import Security, MongoEngineUserDatastore ,login_user, logout_user, UserMixin, RoleMixin, login_required, current_user, roles_accepted
 from pymongo import MongoClient
@@ -56,7 +56,8 @@ security = Security(app, user_datastore)
 
 #沒有權限導引畫面
 def unauthorized_callback():
-	return redirect('/')
+    flash("你沒有權限") 
+    return redirect('/index')
 
 # 設定未授權時轉跳畫面
 security._state.unauthorized_handler(unauthorized_callback)
