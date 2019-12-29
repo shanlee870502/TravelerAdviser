@@ -188,7 +188,8 @@ def complete():
     #activity_data是使用者輸入表單的資料    
     activity_data = request.values.to_dict()
     randomSeedByNow = datetime.now()
-    eventID = ObjectId.from_datetime(randomSeedByNow)
+    eventID = str(ObjectId.from_datetime(randomSeedByNow))
+    
     activity_data['eventID'] = eventID
     
     insert_data(activity_data)
