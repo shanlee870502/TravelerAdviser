@@ -25,11 +25,19 @@ col = db['newEvent2']
 location_col = db['newEvent2']
 db = MongoEngine(app)
 bcrypt = Bcrypt(app)
-
+#密碼加密
 def hashPassword(password):
     pw_hash = bcrypt.generate_password_hash(password).decode('utf-8')
     return pw_hash
-
+#活動地址轉經緯度
+def getlatlng(address):
+    import googlemaps 
+    gmaps = googlemaps.Client(key='AIzaSyBaLZySMH6UEN1158bcMPpUi3XaXotIb3A')
+    try:
+        geocode_result = gmaps.geocode(address)[0]['geometry']['location']
+        return geocode_result
+    except:
+        return None
 # 不同種權限身份
 class Role(db.Document, RoleMixin):
     name = db.StringField(max_length=80, unique=True)
@@ -73,6 +81,7 @@ def create_user():
         
 def insert_data(event):
     if col.find_one({"eventName":event["eventName"]}) is None:
+        event['location'] = getlatlng(event['eventLocation'])
         col.insert_one(event)
         print('insert success')
     #else:
@@ -256,7 +265,10 @@ def searchEvent():
         #3 Latest event 
         if data['type']=='recently':
             print('here')
-            lastupload = col.aggregate([{ "$sort": { "eventM_B": -1 } }])
+            strNow = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
+            lastupload = col.find({'eventM_F':{'$gte':strNow}})
+                
+            lastupload = lastupload.aggregate([{ "$sort": { "eventM_B": -1 } }])
             count = 0
             for match in lastupload:
                 count+=1
@@ -272,6 +284,7 @@ def searchEvent():
                 if count == 3:
                     break
             return jsonify(searchEvents)
+            
             
         # #3 earlist upload time
         if data['type']=='upLoadTime':
@@ -334,5 +347,5 @@ def map():
     return render_template("map.html")
 
 app.run(host="140.121.199.231", port=27018)
-
+#testDate = datetime.strptime('2019-12-28T13:30:00', "%Y-%m-%dT%H:%M:%S")
 
