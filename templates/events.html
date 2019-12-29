@@ -59,7 +59,7 @@
 			<form method=["POST"] action="/complete" enctype="multipart/form-data">
 				<h2 id="title" class="animated bounce infinite" style="text-align:center"><span style="color:#008F7E;"
 						id="theName">{{activity.eventName}}</span></h2>
-				<img src="/assets/img/Calendar.svg" class="center" alt="" width="32" height="32">
+				<img src="/assets/img/Calendar.svg" class="center" width="32" height="32" onerror="this.onerror=null; this.src='static/images/_blank.jpg'">
 				<span id="eventPhoto"></span><br>
 				<h3 id="">
 					<h3 id="date">活動日期:&nbsp;&nbsp;<span
@@ -116,7 +116,7 @@
 			var popContent =
 				"<img style='width:1080px;height:540px;' src='static/images/" +
 				$('#theID').text() +
-				".jpg'><br>";
+				".jpg' onerror='this.onerror=null; this.src=\'static/images/_blank.jpg\''><br>";
 			console.log(popContent);
 			$('#eventPhoto').append(popContent);
 		});

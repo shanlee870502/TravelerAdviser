@@ -94,10 +94,10 @@ function add_ActivityToMap(position, eventLocation, eventName, eventM_B, eventM_
 }
 function addMarker(e, location, name, start, end){
   var infowindow = new google.maps.InfoWindow();
-  const random =Math.floor(Math.random()*10)+1;
+  // const random =Math.floor(Math.random()*10)+1;
   var icon = {
-    url: '/static/gps_images/'+random+'.png', // url
-    scaledSize: new google.maps.Size(80,80), // scaled size
+    url: '/static/gps_images/'+(e+1)+'.png', // url
+    scaledSize: new google.maps.Size(60,60), // scaled size
     origin: new google.maps.Point(0,0), // origin
     anchor: new google.maps.Point(0, 0) // anchor
   };
@@ -117,8 +117,9 @@ function addMarker(e, location, name, start, end){
     infowindow.open(map, markers[e+1]);
     markers[e+1].addListener('click',function(){
       infowindow.open(map, markers[e+1]);
+      window.location.href = "http://140.121.199.231:27018/eventdetails?eventName="+name;
     });
-  }, e * 150);
+  }, e * 2000);
 }
 
 function initMap()
