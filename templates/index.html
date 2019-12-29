@@ -63,13 +63,13 @@
 				<div class="inner" >
 					<ul class="bulletin_ul">
 						{% for activity in bulletin%}
-						<li><a>
+						<li><a href="http://140.121.199.231:27018/eventdetails?eventName={{activity.eventName}}">
 							   <div class="newEvent">{{activity.eventName}}</div>
-							   <div class="newDate">{{activity.eventM_B}}</div>
+							   <div class="newDate">{{activity.eventM_B.replace('T', " ").replace("-","/")}}~{{activity.eventM_F.replace('T', " ")}}</div>
 						</a></li>
 						{%endfor%}
 					</ul>
-					<div align="center"><b><a href="#" style="text-align:center;width:20%;font-size:23px;color:#DAF5F5;text-decoration:none;"><br>SEE MORE</a></b></div>
+					<!-- <div align="center"><b><a href="#" style="text-align:center;width:20%;font-size:23px;color:#DAF5F5;text-decoration:none;"><br>SEE MORE</a></b></div> -->
 				</div>
 				
 			</section>
@@ -108,7 +108,7 @@
 							'<form action="/eventdetails" class="flex-item box" method="GET" " name="form-search'+i+'" id="form-search'+i+'"><input type="hidden" name="eventName" value="'+searchResult[i].eventName+'">'+
 							'<div  onClick="document.forms[\'form-search'+i+'\'].submit();"><a style="text-decoration:none;" target="_blank">';
 						popContent +=
-							'<div class="image fit"><img src="static/images/'+searchResult[i].eventID+'.jpg" alt="" /></div>';
+							'<div class="image fit"><img src="static/images/'+searchResult[i].eventID+'.jpg" onerror="this.onerror=null; this.src=\'static/images/_blank.jpg\'" /></div>';
 						popContent +=
 							'<div class="content">'+
 							'<h3>'+searchResult[i].eventName+'</h3>'+
@@ -128,7 +128,7 @@
 							'<form action="/eventdetails" class="flex-item box" method="GET" name="form-search'+(i+3)+'" id="form-search'+(i+3)+'"> <input type="hidden" name="eventName" value="'+searchResult[i].eventName+'">'+
 							'<div onClick="document.forms[\'form-search'+(i+3)+'\'].submit();"><a style="text-decoration:none;" target="_blank">';
 						popContent +=
-							'<div class="image fit"><img src="static/images/'+searchResult[i].eventID+'.jpg" alt="" /></div>';
+							'<div class="image fit"><img src="static/images/'+searchResult[i].eventID+'.jpg"  onerror="this.onerror=null; this.src=\'static/images/_blank.jpg\'" /></div>';
 						popContent +=
 							'<div class="content">'+
 							'<h3>'+searchResult[i].eventName+'</h3>'+

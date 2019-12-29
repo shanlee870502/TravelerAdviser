@@ -1,74 +1,88 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>已刊登活動</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<meta property="og:title" content="{{activity.eventName}}" />
-		<!--<meta property="og:description" content="Your description" />-->
-		<meta property="og:image" content="/assets/img/Calendar.svg" />
+<head>
+	<title>已刊登活動</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="static/assets/css/act_info.css" />
-		<link rel="stylesheet" href="static/assets/css/main.css" />
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		<!-- Animate.css v3.5.2 -->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet"  />
-	</head>
-	<body class="animated">
-		<!--fb shared develop-->
-		<div id="fb-root"></div>
-		<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v5.0&appId=563432047547721&autoLogAppEvents=1"></script>
-		
-		<!-- Header -->
-			<header id="header">
-				<nav class="left">
-					<a href="#menu"><span>Menu</span></a>	
-				</nav>
-				<a href="upLoadEvent" class="logo">已刊登活動</a>
-				<div id="nlogin">
-				<!--<nav class="right" ><a href="login" class="button alt">登入</a></nav>-->
-				</div>
-				<div id="alogin", style="display: none"></div>
-			</header>
+	<meta property="og:title" content="{{activity.eventName}}" />
+	<!--<meta property="og:description" content="Your description" />-->
 
-		<!-- Menu -->
-			<nav id="menu">
-				<ul class="links">
-					<li><a href="index">主頁</a></li>
-					<li><a href="search">搜尋活動</a></li>
-					<li><a href="upLoadEvent">建立活動</a></li>
-					<li><a href="localCompany">在地商家</a></li>
-					<li><a href="map">地圖通</a></li>
-				</ul>
-			</nav>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="static/assets/css/act_info.css" />
+	<link rel="stylesheet" href="static/assets/css/main.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- Animate.css v3.5.2 -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+</head>
 
-		<!-- Main -->
-		
-		<section id="main" class="wrapper">
-			<div class="inner">
-				<form method=["POST"] action="/complete" enctype="multipart/form-data">	
-					<h2 id="title" class="animated bounce infinite" style="text-align:center"><span style="color:#008F7E;" id="theName" >{{activity.eventName}}</span></h2> 
-					<img src="/assets/img/Calendar.svg"  class="center" alt="" width="32" height="32">
-					<span id="eventPhoto"></span><br>
-					<h3 id="">
-					<h3 id="date">活動日期:&nbsp;&nbsp;<span style="color:#008F7E;">{{activity.eventM_B}}~{{activity.eventM_F}}</span></h3>
+<body class="animated">
+	<!-- Load Facebook SDK for JavaScript -->
+	<div id="fb-root"></div>
+	<script>(function (d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+	<!-- Header -->
+	<header id="header">
+		<nav class="left">
+			<a href="#menu"><span>Menu</span></a>
+		</nav>
+		<a href="upLoadEvent" class="logo">已刊登活動</a>
+		<div id="nlogin">
+			<!--<nav class="right" ><a href="login" class="button alt">登入</a></nav>-->
+		</div>
+		<div id="alogin" , style="display: none"></div>
+	</header>
+
+	<!-- Menu -->
+	<nav id="menu">
+		<ul class="links">
+			<li><a href="index">主頁</a></li>
+			<li><a href="search">搜尋活動</a></li>
+			<li><a href="upLoadEvent">建立活動</a></li>
+			<li><a href="localCompany">在地商家</a></li>
+			<li><a href="map">地圖通</a></li>
+		</ul>
+	</nav>
+
+	<!-- Main -->
+
+	<section id="main" class="wrapper">
+		<div class="inner">
+			<form method=["POST"] action="/complete" enctype="multipart/form-data">
+				<h2 id="title" class="animated bounce infinite" style="text-align:center"><span style="color:#008F7E;"
+						id="theName">{{activity.eventName}}</span></h2>
+				<img src="/assets/img/Calendar.svg" class="center" alt="" width="32" height="32">
+				<span id="eventPhoto"></span><br>
+				<h3 id="">
+					<h3 id="date">活動日期:&nbsp;&nbsp;<span
+							style="color:#008F7E;">{{activity.eventM_B}}~{{activity.eventM_F}}</span></h3>
 					<br>
-					<h3 id="place">活動地點:&nbsp;&nbsp;<span style="color:#008F7E;" id="theLocation">{{activity.eventLocation}}</h2>
-						<span id="googleMap" ></span></span>
+					<h3 id="place">活動地點:&nbsp;&nbsp;<span style="color:#008F7E;"
+							id="theLocation">{{activity.eventLocation}}</h2>
+							<span id="googleMap"></span></span>
 					</h3><br>
 
-					<h3 id="content">活動詳情:&nbsp;&nbsp;</h3><span style="color:#008F7E; font-family: Microsoft JhengHei; font-size: 25px;">{{activity.eventDetail}}</span>
-					<h3 id="theID"style="display:none;">{{activity.eventID}}</h3>
+					<h3 id="content">活動詳情:&nbsp;&nbsp;</h3><span
+						style="color:#008F7E; font-family: Microsoft JhengHei; font-size: 25px;">{{activity.eventDetail}}</span>
+					<h3 id="theID" style="display:none;">{{activity.eventID}}</h3>
 
-				</form>	
+			</form>
 
-				<div class="fb-share-button" data-href="http://140.121.199.231:27018/eventdetails?eventName={{activity.eventName}}&amp;src=sdkpreparse" data-layout="button" size="large">活動分享</div>
-				
-				<!-- Form -->
-				
-				<!-- <div class="act_info">
+			<div class="fb-share-button"
+				data-href="http://140.121.199.231:27018/eventdetails?eventName={{activity.eventName}}&amp;src=sdkpreparse"
+				data-layout="button" size="large"></div>
+
+			<!-- Form -->
+
+			<!-- <div class="act_info">
 					<h3 style="text-align:center">聯絡人資訊</h3>
 					<div><h4 style="color:#008F7E;">承辦人: {{activity.name_}}</h4></div>
 					<div><h4 style="color:#008F7E;">Email: {{activity.email_}}</h4></div>
@@ -76,50 +90,51 @@
 					<div><h4 style="color:#008F7E;">地址: {{activity.address_}}</h4></div>
 					 <div class="12u$"><h4 style="color:#008F7E;">{{activity.remark}}</h4></div>
 				</div> -->
-		</form>
-			</div>
-		</section>
+			</form>
+		</div>
+	</section>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
-					<h2>Seafood Allergy</h2>
-					<ul class="actions">
-						<li><span class="icon fa-phone"></span> <a href="#">0965728008</a></li>
-						<li><span class="icon fa-envelope"></span> <a href="#">kaz749283@gmail.com</a></li>
-						<li><span class="icon fa-map-marker"></span> 123 Somewhere Road, Nashville, TN 00000</li>
-					</ul>
-					<p>Author:WEI WANG Hopeful LEE Wei KUANG CAPTAIN LIANG SHAN LEE </p>
-				</div>
-			</footer>
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<h2>Seafood Allergy</h2>
+			<ul class="actions">
+				<li><span class="icon fa-phone"></span> <a href="#">0965728008</a></li>
+				<li><span class="icon fa-envelope"></span> <a href="#">kaz749283@gmail.com</a></li>
+				<li><span class="icon fa-map-marker"></span> 123 Somewhere Road, Nashville, TN 00000</li>
+			</ul>
+			<p>Author:WEI WANG Hopeful LEE Wei KUANG CAPTAIN LIANG SHAN LEE </p>
+		</div>
+	</footer>
 
-		<!-- Scripts -->
-		<script src="static/assets/js/jquery.min.js"></script>
-		<script>
-		$(document).ready(function(){
+	<!-- Scripts -->
+	<script src="static/assets/js/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
 			console.log($('#theID').text());
 			$('#eventPhoto').empty();
-			var popContent =			
-				"<img style='width:1080px;height:540px;' src='static/images/"+
-				$('#theID').text()+
+			var popContent =
+				"<img style='width:1080px;height:540px;' src='static/images/" +
+				$('#theID').text() +
 				".jpg'><br>";
-				console.log(popContent);
-				$('#eventPhoto').append(popContent);
-			});
-			
-		$(document).ready(function(){
+			console.log(popContent);
+			$('#eventPhoto').append(popContent);
+		});
+
+		$(document).ready(function () {
 			$('#googleMap').empty();
-			var popContent_2 =			
-				"<iframe id='googleMap' width='100%' height='200' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q="+
-				$('#theLocation').text()+
+			var popContent_2 =
+				"<iframe id='googleMap' width='100%' height='200' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" +
+				$('#theLocation').text() +
 				"&z=16&output=embed&t='></iframe><br><br>";
-				$('#googleMap').append(popContent_2);
-			});
-		
-		</script>
-		<script src="static/assets/js/jquery.scrolly.min.js"></script>
-		<script src="static/assets/js/skel.min.js"></script>
-		<script src="static/assets/js/util.js"></script>
-		<script src="static/assets/js/main.js"></script>
-	</body>
+			$('#googleMap').append(popContent_2);
+		});
+
+	</script>
+	<script src="static/assets/js/jquery.scrolly.min.js"></script>
+	<script src="static/assets/js/skel.min.js"></script>
+	<script src="static/assets/js/util.js"></script>
+	<script src="static/assets/js/main.js"></script>
+</body>
+
 </html>

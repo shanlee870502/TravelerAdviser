@@ -155,7 +155,23 @@ def logout_Use():
 @app.route('/index', methods=['GET','POST'])
 def home():
     strNow = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
-    result = col.aggregate([{"$match":{'eventM_F':{'$gte':strNow}}},{ "$sort": { "eventM_B": 1 }},{ "$limit" : 10 }])
+    result = col.aggregate([
+                {
+                    "$project":
+                    {
+                        "eventName": 1,
+                        "eventM_F": { "$substr": [ "$eventM_F", 0, 16 ] },
+                        "eventM_B": {"$substr": ["$eventM_B", 0, 16 ]},
+                    }
+                },
+                {
+                    "$match": {'eventM_F':{'$gte':strNow}}
+                },
+                {   
+                    "$sort": { "eventM_B": 1 }
+                },
+                { "$limit" : 10 }
+                ])
     return render_template("index.html", bulletin=list(result))
 
 @app.route('/upLoadEvent')
