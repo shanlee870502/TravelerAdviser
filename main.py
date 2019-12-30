@@ -333,8 +333,8 @@ def showEvents():
     data= request.values.to_dict()
     print(data)
     activity_data=col.find_one({"eventName":data["eventName"]})
-    tempB=activity_data['eventM_B']
-    tempF=activity_data['eventM_F']
+    # tempB=activity_data['eventM_B']
+    # tempF=activity_data['eventM_F']
     tempB=str(activity_data['eventM_B'])
     tempF=str(activity_data['eventM_F'])
     tempB=tempB.replace("T"," ")
