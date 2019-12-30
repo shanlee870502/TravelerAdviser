@@ -295,7 +295,31 @@ def searchEvent():
                 print(events)
                 searchEvents.append(events)
             return jsonify(searchEvents)
-
+        if data['type'] =='byLocation':
+            stopWords=[]
+            segments=[]
+            remainderWords=[]
+            with open('stopwordlist.txt', 'r', encoding='UTF-8') as file:
+                for d in file.readlines():
+                    d = d.strip()
+                    stopWords.append(d)
+            
+            text = data['data']
+            segments = jieba.cut(text, cut_all=False)
+            
+            remainderWords = list(filter(lambda a: a not in stopWords and a != '\n', segments))
+            for word in remainderWords:
+                findEvents = col.find({"eventLocation" : {'$regex' : ".*"+word+".*"}})
+                for match in findEvents:
+                    events={
+                        'eventName' :match['eventName'],
+#                        'email':match['email_'],
+                        'eventM_B' : match['eventM_B'].replace("T"," "),
+                        'eventLocation' : match['eventLocation'],
+                        'eventID' :match['eventID']
+                    }
+                    searchEvents.append(events)
+            return jsonify(searchEvents)
 @app.route('/eventdetails',methods=['GET','POST'])
 def showEvents():
     data= request.values.to_dict()
