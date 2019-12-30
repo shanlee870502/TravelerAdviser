@@ -58,6 +58,15 @@ function searchRequest(){
 		success: setResult
 		});
 	}
+	if(postReg == 1){
+		$.ajax({
+		type: 'POST',
+		url: "http://"+ipconfig+"/searchcomplete",
+		data: JSON.stringify({"type" : postType[postReg] , "data" : $('#eventLocation').val().toString()}),
+		contentType: 'application/json; charset=utf-8',
+		success: setResult
+		});
+	}
 	if(postReg == 2){
 		if($('#learn').is(":checked")){selected.push("learn");}
 		if($('#art').is(":checked")){selected.push("art");}
@@ -98,6 +107,23 @@ function createSearchBarNode()
 		//return newNode;
 	}
 
+
+function createSearcLocationhBarNode()
+	{
+		postReg = 1;//byLocation
+		$('#main').empty();
+		var popContent =			
+					'<div class="inner"><input type="text" name="searchEventName" id="eventLocation" placeholder="請輸入地點" autofocus></div><br>'+
+					'<div class="inner">'+
+								'<ul class="actions" style="text-align:right;" >'+
+									'<li><input type="submit" value="確認送出" onclick="searchRequest()"/></li>'+
+									'<li><input type="reset" value="取消" class="alt" /></li>'+
+								'</ul></div>';
+
+		$('#main').append(popContent);
+		//return newNode;
+	}
+/*
 	function createTypeBoxNode()
 	{
 		postReg = 2;
@@ -127,7 +153,7 @@ function createSearchBarNode()
 		$('#main').append(popContent);
 	}
 
-
+*/
 
 
 	
