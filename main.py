@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import flask
-from flask import render_template, request, jsonify, redirect, url_for, make_response, flash
+from flask import render_template, request, jsonify, redirect, url_for, make_response, flash, session
 from flask_bcrypt import Bcrypt
 from flask_security import Security, MongoEngineUserDatastore ,login_user, logout_user, UserMixin, RoleMixin, login_required, current_user, roles_accepted
 from pymongo import MongoClient
@@ -144,6 +144,11 @@ def login_Use():
         print(user_in_db)
         print(bcrypt.check_password_hash(user_in_db['password'], nowUser['password']))
         return redirect('/login')
+    
+#    設置session
+    session['username'] = nowUser['email']
+    session.permanent = True
+    
     nowUser=user_datastore.get_user(nowUser['email'])
     login_user(nowUser)
     return redirect('index')
@@ -151,10 +156,13 @@ def login_Use():
 @app.route('/logout_user', methods=['GET','POST'])
 def logout_Use():
     logout_user()
+    session['username'] = False
+    return redirect('/index')
            
 @app.route('/index', methods=['GET','POST'])
 def home():
     strNow = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
+    isLogin = session.get('username')
     result = col.aggregate([
                 {
                     "$project":
@@ -172,7 +180,7 @@ def home():
                 },
                 { "$limit" : 10 }
                 ])
-    return render_template("index.html", bulletin=list(result))
+    return render_template("index.html", bulletin=list(result), isLogin = isLogin)
 
 @app.route('/upLoadEvent')
 @login_required
@@ -275,7 +283,7 @@ def searchEvent():
                     'eventID' : match['eventID']
                 }
                 searchEvents.append(events)
-                if count == 3:
+                if count == 30:
                     break
             return jsonify(searchEvents)
             
@@ -283,7 +291,7 @@ def searchEvent():
         # #3 earlist upload time
         if data['type']=='upLoadTime':
             print('here')
-            lastupload = col.find().skip(col.count() - 3)
+            lastupload = col.find().skip(col.count() - 30)
             for match in lastupload:
                 events={
                     'eventName' :match['eventName'],
