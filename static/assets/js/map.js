@@ -4,6 +4,7 @@ const ipconfig = "140.121.199.231:27018"
 var center_lat;
 var center_lng;
 var flag = 1;
+var bounds ;
 
 function findLocation()
 {
@@ -32,11 +33,39 @@ function findLocation()
       center_lng = results[0].geometry.location.lng();   
       $('#findbutton').fadeIn().css('display','inline-block');
       $('#findbutton').click({lat: center_lat, lng: center_lng}, findActivity);
+      var service = new google.maps.places.PlacesService(map);
+      service.nearbySearch({
+          location : {lat: center_lat, lng: center_lng},
+          radius : 5500,
+          type : [ 'restaurant' ]
+      }, callback);
     } else {
       console.log(status);
+      alert("查無此地點");
     }
    
   });  
+}
+function callback(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+          createMarker(results[i]);
+      }
+  }
+}
+
+function createMarker(place) {
+  var placeLoc = place.geometry.location;
+  var marker = new google.maps.Marker({
+      map : map,
+      position : place.geometry.location
+  });
+  console.log(place.name);
+  google.maps.event.addListener(marker, 'click', function() {
+      var infowindow = new google.maps.InfoWindow();
+      infowindow.setContent(place.name);
+      infowindow.open(map, this);
+  });
 }
 function clearMarkers() {
   for (var i = 0; i < markers.length; i++) {
@@ -79,7 +108,8 @@ function findActivity(event){
         eventM_F.push(data[i][0]['eventM_F']);
         position.push( data[i][0]['location']);
       }
-      add_ActivityToMap(position, eventLocation, eventName, eventM_B, eventM_F);
+      $.when(add_ActivityToMap(position, eventLocation, eventName, eventM_B, eventM_F)).done(set());
+      
     })
     .catch(err => { throw err });
   }
@@ -112,16 +142,23 @@ function addMarker(e, location, name, start, end){
         icon:icon,
         animation: google.maps.Animation.DROP
       }));
-    var infoContent = "活動名稱: "+name+"<br>"+"活動地點: "+location+"<br>"+"開始時間: "+start+"<br>"+"結束時間:"+ end;
-    infowindow.setContent(infoContent);
-    infowindow.open(map, markers[e+1]);
-    markers[e+1].addListener('click',function(){
+      var infoContent = "活動名稱: "+name+"<br>"+"活動地點: "+location+"<br>"+"開始時間: "+start+"<br>"+"結束時間:"+ end;
+      infowindow.setContent(infoContent);
+      infowindow.open(map, markers[e+1]);
+      markers[e+1].addListener('click',function(){
       infowindow.open(map, markers[e+1]);
       window.location.href = "http://140.121.199.231:27018/eventdetails?eventName="+name;
     });
+    
   }, e * 2000);
+ 
+ 
 }
-
+function set()
+{
+  
+  map.setZoom(15);
+}
 function initMap()
 {
   //設定初始位置
@@ -130,7 +167,7 @@ function initMap()
     zoom: 17
   });
 
-  var address = '海洋大學';
+  var address = '海洋大學';set()
 
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == 'OK') {
@@ -139,7 +176,7 @@ function initMap()
       console.log(status);
     }
   });
-
+  
   var submit = document.getElementById("submit");
   submit.addEventListener("click",findLocation,false);
 }

@@ -11,11 +11,12 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="static/assets/css/act_info.css" />
-	<link rel="stylesheet" href="static/assets/css/main.css" />
+	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<!-- Animate.css v3.5.2 -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="static/assets/css/main.css" />
 </head>
 
 <body class="animated">
@@ -57,8 +58,8 @@
 	<section id="main" class="wrapper">
 		<div class="inner">
 			<form method=["POST"] action="/complete" enctype="multipart/form-data">
-				<h2 id="title" class="animated bounce" style="text-align:center"><span style="color:#008F7E;"
-						id="theName">{{activity.eventName}}</span></h2>
+				<h1 id="title" class="animated bounce" style="text-align:center"><span style="color:#008F7E;"
+						id="theName">{{activity.eventName}}</span></h1>
 				<img src="/assets/img/Calendar.svg" class="center" width="32" height="32" onerror='this.onerror=null; this.src="static/images/_blank.jpg"'>
 				<span id="eventPhoto"></span><br>
 				<h3 id="">
