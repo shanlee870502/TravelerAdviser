@@ -51,11 +51,12 @@
 		<!-- Three -->
 			<section id="three" class="wrapper">
 				<div class="inner">
-				  <ul class="tab-title"  style="list-style:none;text-align:right;">
-					<li><a id="#tab01">最新活動</a></li>
-					<li><a id="#tab02">近期建立</a></li>
-				  </ul>
+				  
 				  <div class="container">
+						<ul class="tab-title"  style="list-style:none;text-align:right;">
+							<li><a id="#tab01">最新活動</a></li>
+							<li><a id="#tab02">近期建立</a></li>
+						</ul>
 					  <div id="tab01" class="tab-inner">
 							<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 								<!-- Your controls -->
@@ -162,7 +163,7 @@
 				function setResult_1(searchResult){
 				
 				$('#latestEvent_1').empty();
-				var popContent="";
+				let popContent="";
 				for(var i=0;i<30;i++){
 					//console.log(i);
 						if(i == 0)

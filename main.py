@@ -134,24 +134,27 @@ def login():
 
 @app.route('/login_user', methods=['GET', 'POST'])
 def login_Use():
-    nowUser = request.values.to_dict()
-    print(nowUser)
-    userdb =client['flaskTest']
-    user_col=userdb['user']
-    print(user_col.find_one({'email':nowUser['email']}))
-    user_in_db =user_col.find_one({'email':nowUser['email']})
-    if user_in_db is None or bcrypt.check_password_hash(user_in_db['password'], nowUser['password']) is False:
-        print(user_in_db)
-        print(bcrypt.check_password_hash(user_in_db['password'], nowUser['password']))
+    try:
+        nowUser = request.values.to_dict()
+        print(nowUser)
+        userdb =client['flaskTest']
+        user_col=userdb['user']
+        print(user_col.find_one({'email':nowUser['email']}))
+        user_in_db =user_col.find_one({'email':nowUser['email']})
+        if user_in_db is None or bcrypt.check_password_hash(user_in_db['password'], nowUser['password']) is False:
+            print(user_in_db)
+            print(bcrypt.check_password_hash(user_in_db['password'], nowUser['password']))
+            return redirect('/login')
+        
+    #    設置session
+        session['username'] = nowUser['email']
+        session.permanent = True
+        
+        nowUser=user_datastore.get_user(nowUser['email'])
+        login_user(nowUser)
+        return redirect('index')
+    except:
         return redirect('/login')
-    
-#    設置session
-    session['username'] = nowUser['email']
-    session.permanent = True
-    
-    nowUser=user_datastore.get_user(nowUser['email'])
-    login_user(nowUser)
-    return redirect('index')
            
 @app.route('/logout_user', methods=['GET','POST'])
 def logout_Use():

@@ -47,8 +47,8 @@
 
 						<h2 id="content">活動詳情、說明</h2>
 						<h2 style="color:#008F7E">{{activity.eventDetail}}</h2>
-						
-						<h2 id="content">活動規劃進度</h2> -->
+						<h3 id="theID" style="display:none;">{{activity.eventID}}</h3>
+						<h2 id="content">活動規劃進度</h2>
 						<div>
 								<a href="javascript:;" onclick="document.getElementById('nec_hid').style.display='none'">
 									<input type="radio" id="Y" name="eventReady" value="Y" checked >
@@ -73,7 +73,7 @@
 					<hr/>
 				</div>
 			</section>
-
+			
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="inner">
@@ -94,8 +94,8 @@
 			$('#eventPhoto').empty();
 			var popContent =			
 				"<img style='width:1080px;height:540px;' src='static/images/"+
-				$('#theName').text()+
-				".jpg' onerror='this.onerror=null; this.src=\'static/images/_blank.jpg\''><br>";
+				$('#theID').text()+
+				".jpg' onerror='this.onerror=null; this.src=\"static/images/_blank.jpg\"'"><br>";
 				$('#eventPhoto').append(popContent);
 			});
 			
