@@ -18,10 +18,9 @@
 					<a href="#menu"><span>Menu</span></a>
 				</nav>		
 				<a href="index" class="logo">SeafoodAllergy</a>
-				<!-- <a href="logout" class="button scrolly">登出</a> -->
-				<!--<nav class="right" ><a href="login" class="button alt">登入</a></nav>-->
-				<a id="logInOut" class="button scrolly" style="height:50px;position: absolute; right:50px;top:20px;"></a>
-				<div id="judgelogin" style="display: none;">{{isLogin}}</div>
+
+				<nav class="right" ><a id="logInOut" class="button alt">登入</a></nav>
+				<!-- <div id="judgelogin" style="display: none;">{{isLogin}}</div> -->
 			</header>
 
 		<!-- Menu -->
@@ -143,14 +142,16 @@
 		<!-- Scripts -->
 			<script src="static/assets/js/jquery.min.js"></script>
 			<script>
-				if($('#judgelogin').text()=='False'){
-					$('#logInOut').text('登入');
-					$('#logInOut').attr('href','login');
-				}
-				else{
-					$('#logInOut').text('登出');
-					$('#logInOut').attr('href','logout_user');
-				}
+
+				// $getJSON('')
+				// if($('#judgelogin').text()=='False'){
+				// 	$('#logInOut').text('登入');
+				// 	$('#logInOut').attr('href','login');
+				// }
+				// else{
+				// 	$('#logInOut').text('登出');
+				// 	$('#logInOut').attr('href','logout_user');
+				// }
 				
 				$(function(){
 				var $li = $('ul.tab-title li');
@@ -164,7 +165,7 @@
 				
 				$('#latestEvent_1').empty();
 				let popContent="";
-				for(var i=0;i<30;i++){
+				for(var i=0;i<15;i++){
 					//console.log(i);
 						if(i == 0)
 						{
@@ -210,10 +211,9 @@
 
 					var popContent="";
 					// var popContent='<h1 style="font-size:50px; text-align:center;" >近期建立</h1><div class="inner flex flex-3">';
-					for(var i=0;i<30;i++){
+					for(var i=0;i<15;i++){
 						if(i == 0)
 						{
-							console.log(i);
 							//popContent="";
 							popContent+="<div class=\"carousel-item active\"><div class=\"d-block w-300\">";
 							popContent+='<div class="inner flex flex-3">'; //<h1 style="font-size:50px; text-align:center;" >最新活動</h1>
@@ -271,6 +271,6 @@
 			<script src="static/assets/js/skel.min.js"></script>
 			<script src="static/assets/js/util.js"></script>
 			<script src="static/assets/js/main.js"></script>
-
+			<script src="static/assets/js/loginSession.js"></script>
 	</body>
 </html>

@@ -185,6 +185,10 @@ def home():
                 ])
     return render_template("index.html", bulletin=list(result), isLogin = isLogin)
 
+@app.route('/loginSession',methods=['GET','POST'])
+def get_login_session():   
+    isLogin = {'user':session.get('username')}
+    return jsonify(isLogin)
 @app.route('/upLoadEvent')
 @login_required
 @roles_accepted('admin')
@@ -286,7 +290,7 @@ def searchEvent():
                     'eventID' : match['eventID']
                 }
                 searchEvents.append(events)
-                if count == 30:
+                if count == 15:
                     break
             return jsonify(searchEvents)
             
@@ -294,7 +298,7 @@ def searchEvent():
         # #3 earlist upload time
         if data['type']=='upLoadTime':
             print('here')
-            lastupload = col.find().skip(col.count() - 30)
+            lastupload = col.find().skip(col.count() - 15)
             for match in lastupload:
                 events={
                     'eventName' :match['eventName'],

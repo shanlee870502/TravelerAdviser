@@ -60,7 +60,7 @@ function createMarker(place) {
       map : map,
       position : place.geometry.location
   });
-  console.log(place.name);
+
   google.maps.event.addListener(marker, 'click', function() {
       var infowindow = new google.maps.InfoWindow();
       infowindow.setContent(place.name);
